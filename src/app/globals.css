@@ -1,0 +1,419 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+ 
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+ 
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+ 
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+ 
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+ 
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+ 
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+ 
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+ 
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+ 
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Custom font families */
+  --font-outfit: 'Outfit', sans-serif;
+  --font-amiri: 'Amiri', serif;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to sure everything still looks
+  correct.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@layer utilities {
+  body {
+    font-family: var(--font-outfit), sans-serif;
+  }
+}
+
+/* ===== LIGHT MODE ===== */
+:root {
+  --background: hsl(40 33% 98%); /* Warm Cream White */
+  --foreground: hsl(160 30% 15%); /* Dark Forest Green */
+  
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(160 30% 15%);
+  
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(160 30% 15%);
+  
+  --primary: hsl(160 84% 26%); /* Deep Emerald */
+  --primary-foreground: hsl(0 0% 100%);
+  
+  --secondary: hsl(45 75% 65%); /* Rich Gold */
+  --secondary-foreground: hsl(160 30% 15%);
+  
+  --muted: hsl(40 20% 94%);
+  --muted-foreground: hsl(160 15% 45%);
+  
+  --accent: hsl(45 85% 50%); /* Golden Accent */
+  --accent-foreground: hsl(160 30% 15%);
+  
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+
+  --border: hsl(160 15% 88%);
+  --input: hsl(160 15% 88%);
+  --ring: hsl(160 84% 26%);
+  
+  --radius: 0.75rem;
+
+  /* Custom Colors */
+  --gold: hsl(45 85% 50%);
+  --gold-light: hsl(45 90% 70%);
+  --emerald-dark: hsl(160 84% 20%);
+  --emerald-light: hsl(160 60% 45%);
+}
+
+/* ===== DARK MODE ===== */
+.dark {
+  --background: hsl(200 20% 8%); /* Deep Dark Blue-Black */
+  --foreground: hsl(40 30% 95%); /* Light Cream */
+  
+  --card: hsl(200 18% 12%);
+  --card-foreground: hsl(40 30% 95%);
+  
+  --popover: hsl(200 18% 10%);
+  --popover-foreground: hsl(40 30% 95%);
+  
+  --primary: hsl(160 70% 45%); /* Bright Emerald */
+  --primary-foreground: hsl(200 20% 8%);
+  
+  --secondary: hsl(45 70% 55%); /* Warm Gold */
+  --secondary-foreground: hsl(200 20% 8%);
+  
+  --muted: hsl(200 15% 18%);
+  --muted-foreground: hsl(160 10% 60%);
+  
+  --accent: hsl(45 80% 55%);
+  --accent-foreground: hsl(200 20% 8%);
+  
+  --destructive: hsl(0 62.8% 40%);
+  --destructive-foreground: hsl(0 0% 98%);
+  
+  --border: hsl(200 15% 20%);
+  --input: hsl(200 15% 20%);
+  --ring: hsl(160 70% 45%);
+
+  /* Custom Colors - Dark Mode */
+  --gold: hsl(45 80% 55%);
+  --gold-light: hsl(45 85% 65%);
+  --emerald-dark: hsl(160 70% 35%);
+  --emerald-light: hsl(160 65% 50%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ===== ISLAMIC DECORATIVE PATTERNS ===== */
+.pattern-islamic {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L30 60M0 30L60 30M0 0L60 60M60 0L0 60' stroke='%23047857' stroke-opacity='0.03' fill='none'/%3E%3C/svg%3E");
+}
+
+.pattern-islamic-dark {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L30 60M0 30L60 30M0 0L60 60M60 0L0 60' stroke='%2310B981' stroke-opacity='0.05' fill='none'/%3E%3C/svg%3E");
+}
+
+.pattern-geometric {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-opacity='0.08'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3Cpath d='M40 10L40 70M10 40L70 40'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ===== GLASSMORPHISM ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass {
+  background: rgba(15, 20, 25, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.dark .glass-card {
+  background: linear-gradient(135deg, rgba(30, 40, 50, 0.9) 0%, rgba(20, 30, 40, 0.7) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== GOLDEN ACCENTS ===== */
+.golden-border {
+  border: 2px solid transparent;
+  background: linear-gradient(var(--card), var(--card)) padding-box,
+              linear-gradient(135deg, hsl(45 85% 50%), hsl(45 90% 70%), hsl(45 85% 50%)) border-box;
+}
+
+.golden-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15),
+              0 0 40px rgba(212, 175, 55, 0.1);
+}
+
+.dark .golden-glow {
+  box-shadow: 0 0 20px rgba(244, 196, 48, 0.2),
+              0 0 40px rgba(244, 196, 48, 0.15);
+}
+
+/* ===== GRADIENTS ===== */
+.gradient-emerald {
+  background: linear-gradient(135deg, hsl(160 84% 26%) 0%, hsl(160 70% 35%) 100%);
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, hsl(45 85% 50%) 0%, hsl(45 90% 65%) 100%);
+}
+
+.gradient-premium {
+  background: linear-gradient(135deg, 
+    hsl(160 84% 26%) 0%, 
+    hsl(160 70% 32%) 50%, 
+    hsl(160 60% 38%) 100%);
+}
+
+.dark .gradient-premium {
+  background: linear-gradient(135deg, 
+    hsl(160 70% 35%) 0%, 
+    hsl(160 65% 42%) 50%, 
+    hsl(160 60% 48%) 100%);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(4, 120, 87, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(4, 120, 87, 0.6); }
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-5px); }
+  75% { transform: translateY(5px); }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* ===== ARABIC TEXT STYLING ===== */
+.font-arabic {
+  font-family: 'Amiri', serif;
+  direction: rtl;
+  text-align: right;
+}
+
+.bismillah {
+  font-family: 'Amiri', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  text-shadow: 0 2px 4px rgba(212, 175, 55, 0.2);
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary), var(--emerald-light));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* ===== SPECIAL EFFECTS ===== */
+.text-gradient {
+  background: linear-gradient(135deg, hsl(160 84% 26%), hsl(45 85% 50%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .text-gradient {
+  background: linear-gradient(135deg, hsl(160 70% 50%), hsl(45 80% 60%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(4, 120, 87, 0.15);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 12px 40px rgba(16, 185, 129, 0.2);
+}
+
+/* ===== MESSAGE BUBBLES ===== */
+.message-user {
+  background: linear-gradient(135deg, hsl(160 84% 26%) 0%, hsl(160 70% 32%) 100%);
+  color: white;
+  border-radius: 1.25rem 1.25rem 0.25rem 1.25rem;
+}
+
+.message-ai {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+  border: 1px solid rgba(4, 120, 87, 0.1);
+  border-radius: 1.25rem 1.25rem 1.25rem 0.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.dark .message-ai {
+  background: linear-gradient(135deg, rgba(30, 40, 50, 0.95) 0%, rgba(25, 35, 45, 0.9) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== FOCUS STATES ===== */
+.focus-golden:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
+.dark .focus-golden:focus {
+  box-shadow: 0 0 0 3px rgba(244, 196, 48, 0.3);
+}
+
+/* ===== UTILITIES & EXTRAS ===== */
+.bg-300\% {
+  background-size: 300% 300%;
+}
+
+.animate-spin-slow {
+  animation: spin 12s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

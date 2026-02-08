@@ -1,0 +1,86 @@
+"use client";
+
+import { Sparkles, ArrowRight, BookOpen, List, Search } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { IslamicPattern, StarPattern } from "@/components/islamic-decorations";
+
+interface EmptyStateProps {
+  onSuggestionClick: (suggestion: string) => void;
+}
+
+export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
+  const suggestions = [
+    {
+      icon: Search,
+      text: "Tafsiirka Surah Al-Fatiha",
+      label: "Raadi Tafsiir",
+      color: "text-blue-500 bg-blue-500/10",
+    },
+    {
+      icon: BookOpen,
+      text: "Maxaa loola jeedaa 'Taqwa'?",
+      label: "Fahamka Erayada",
+      color: "text-emerald-500 bg-emerald-500/10",
+    },
+    {
+      icon: List,
+      text: "Isbarbardhig Maka iyo Madiina",
+      label: "Taariikhda",
+      color: "text-amber-500 bg-amber-500/10",
+    },
+  ];
+
+  return (
+    <div className="flex flex-col items-center justify-center max-w-4xl mx-auto px-4 w-full h-full min-h-[50vh] animate-fade-up">
+      <div className="text-center space-y-6 mb-12 relative">
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none">
+          <StarPattern className="w-64 h-64 text-primary animate-spin-slow" />
+        </div>
+        
+        <div className="relative inline-flex mb-4 group">
+           <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/30 transition-all duration-500" />
+           <div className="relative h-20 w-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center shadow-2xl backdrop-blur-sm">
+             <Sparkles className="h-10 w-10 text-primary animate-pulse-glow" />
+           </div>
+        </div>
+
+        <div className="space-y-4 max-w-lg mx-auto">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-500 to-primary bg-300% animate-shimmer">
+            Tafsiir AI
+          </h1>
+          <p className="text-lg text-muted-foreground/80 leading-relaxed font-light">
+            Assistant-kaaga gaarka ah ee barashada Qur'aanka iyo Tafsiirka. 
+            Waydii wax kasta oo ku saabsan diinta.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl">
+        {suggestions.map((item, index) => (
+          <button
+            key={index}
+            onClick={() => onSuggestionClick(item.text)}
+            className="group relative flex flex-col items-start p-5 h-auto text-left rounded-2xl border border-border/50 bg-card/40 hover:bg-card/80 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 overflow-hidden"
+          >
+            <div className={`absolute right-0 top-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+               <ArrowRight size={18} className="text-primary/50 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+            </div>
+            
+            <div className={cn("h-10 w-10 rounded-xl flex items-center justify-center mb-4 transition-colors", item.color)}>
+              <item.icon size={20} />
+            </div>
+            
+            <div>
+              <span className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-1 block">
+                {item.label}
+              </span>
+              <span className="text-sm font-medium text-foreground/90 group-hover:text-primary transition-colors">
+                {item.text}
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
