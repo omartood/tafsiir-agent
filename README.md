@@ -7,7 +7,7 @@ An AI-powered Somali Quran Tafsiir assistant that provides grounded, accurate an
 ## 🚀 Key Features
 
 - **Semantic Intelligence**: Understands religious context and Somali terminology using `gemini-embedding-001`.
-- **Hybrid Retrieval**: Powered by **[Memvid](https://memvid.io)**, combining vector similarity with lexical (keyword) matching to ensure exact verse lookups.
+- **Hybrid Retrieval**: Powered by **[Memvid](https://memvid.com)**, combining vector similarity with lexical (keyword) matching to ensure exact verse lookups.
 - **Accurate Grounding**: Answers are strictly grounded in provided tafsiir data to prevent hallucinations.
 - **Modern UI**: A premium, responsive interface featuring Islamic-inspired aesthetics and dark mode support.
 
