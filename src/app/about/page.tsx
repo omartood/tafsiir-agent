@@ -2,7 +2,8 @@
 
 import { Navbar } from "@/components/navbar";
 import { IslamicPattern } from "@/components/islamic-decorations";
-import { BookOpen, Cpu, Globe, Heart } from "lucide-react";
+import Link from "next/link";
+import { BookOpen, Cpu, Globe, Heart, Github, Shield, Zap } from "lucide-react";
 import Image from "next/image";
 
 const features = [
@@ -14,7 +15,7 @@ const features = [
   {
     icon: Cpu,
     title: "Tafsiir AI",
-    description: "Weydii su'aalo ku saabsan aayadaha, macnahooda, iyo tafsiirkooda oo AI-gu kugu caawinayo.",
+    description: "AI-ga waxaa lagu train gareeyay af Soomaali nadiif ah. Weydii su'aalo ku saabsan aayadaha, macnahooda, iyo tafsiirkooda wuxuuna kuu jawaabaa jawaab sax ah.",
   },
   {
     icon: Globe,
@@ -71,6 +72,31 @@ export default function AboutPage() {
           ))}
         </div>
 
+        {/* Why Tafsiir AI vs other AIs */}
+        <div className="mb-16 space-y-4">
+          <h2 className="text-xl font-bold text-foreground text-center">Maxaa ka duwan Tafsiir AI?</h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 space-y-3">
+              <div className="flex items-center gap-2">
+                <Shield size={22} className="text-primary" />
+                <span className="font-semibold text-foreground">Tafsiir AI</span>
+              </div>
+              <p className="text-sm text-muted-foreground/90 leading-relaxed">
+                Waa AI-agent loogu talagalay Qur'aanka oo lagu tababaray tafsiirka iyo tarjumaadda. Waxaa uu ku saleeyaa jawaabaha Qur'aanka iyo ilo la aqoonsan yahay — ma bixinayo wax aan ka soo bixin Qur'aanka. Tarjumaad iyo tafsiir af Soomaali ah oo la isku halleyn karo.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-border/50 bg-card/40 p-6 space-y-3">
+              <div className="flex items-center gap-2">
+                <Zap size={22} className="text-muted-foreground" />
+                <span className="font-semibold text-foreground/80">ChatGPT, Gemini, iwm.</span>
+              </div>
+              <p className="text-sm text-muted-foreground/80 leading-relaxed">
+                Waa AI guud oo loogu talagalay wax kasta. Markaad weydiiso tafsiir Qur'aan, inta badan waxay soo saaraan jawaab laga soo tuuray (out of the box) oo aan ku tiirsanayn ilo Qur'aan ah oo cad — sidaas darteed jawaabuhu way khaldamaan karaan.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Mission */}
         <div className="rounded-2xl border border-primary/10 bg-primary/5 p-8 text-center space-y-4">
           <p className="bismillah text-2xl text-gold/80">
@@ -96,6 +122,32 @@ export default function AboutPage() {
                 {tech}
               </span>
             ))}
+          </div>
+        </div>
+
+        {/* Developed by & Repo */}
+        <div className="mt-16 pt-8 border-t border-border/40 text-center space-y-3">
+          <p className="text-muted-foreground/80">
+            Waxaa horumarinyey <strong className="text-foreground/90">ToodMind</strong>
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link
+              href="https://github.com/toodmind/tafsiir-agent"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-border/50 bg-card/60 px-5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-card/80 hover:border-primary/20 transition-all"
+            >
+              <Github size={18} />
+              Project repo
+            </Link>
+            <Link
+              href="https://github.com/toodmind/tafsiir-agent/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-border/50 bg-card/60 px-5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-card/80 hover:border-primary/20 transition-all"
+            >
+              Soo dir fikrad
+            </Link>
           </div>
         </div>
       </main>

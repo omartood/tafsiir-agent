@@ -1,26 +1,58 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import { Send, Menu, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { IslamicPattern, DecorativeDivider } from "@/components/islamic-decorations";
+import { IslamicPattern } from "@/components/islamic-decorations";
 import { Sidebar } from "@/components/chat-sidebar";
 import { EmptyState } from "@/components/empty-state";
 import { ChatMessage } from "@/components/chat-message";
-
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-}
+import {
+  getConversations,
+  getConversation,
+  addConversation,
+  updateConversation,
+  createTitleFromFirstMessage,
+  type ChatMessage as StoredMessage,
+} from "@/lib/chat-history";
 
 export default function ChatPage() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const searchParams = useSearchParams();
+  const [conversations, setConversations] = useState<{ id: string; title: string; updatedAt: number }[]>([]);
+  const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
+  const [messages, setMessages] = useState<StoredMessage[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const refreshConversations = useCallback(() => {
+    setConversations(
+      getConversations().map((c) => ({ id: c.id, title: c.title, updatedAt: c.updatedAt }))
+    );
+  }, []);
+
+  useEffect(() => {
+    refreshConversations();
+  }, [refreshConversations]);
+
+  useEffect(() => {
+    if (currentConversationId === null) {
+      setMessages([]);
+      return;
+    }
+    const conv = getConversation(currentConversationId);
+    setMessages(conv ? conv.messages : []);
+  }, [currentConversationId]);
+
+  // Pre-fill input from ?q= (e.g. from landing sample questions)
+  useEffect(() => {
+    const q = searchParams.get("q");
+    if (q?.trim()) setInput(q.trim());
+  }, [searchParams]);
 
   // Scroll to bottom when messages change
   useEffect(() => {
@@ -42,30 +74,42 @@ export default function ChatPage() {
     if (!input.trim() || isLoading) return;
 
     const userMsg = input.trim();
-    setMessages(prev => [...prev, { role: "user", content: userMsg }]);
+    const userMessage = { role: "user" as const, content: userMsg };
+    setMessages((prev) => [...prev, userMessage]);
     setInput("");
     if (textareaRef.current) textareaRef.current.style.height = "auto";
     setIsLoading(true);
 
+    let assistantContent: string;
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMsg }),
       });
-      
       const data = await res.json();
-      
-      if (data.error) {
-        setMessages(prev => [...prev, { role: "assistant", content: `Khalad: ${data.error}` }]);
-      } else {
-        setMessages(prev => [...prev, { role: "assistant", content: data.text }]);
-      }
-    } catch (err) {
-      setMessages(prev => [...prev, { role: "assistant", content: "Khalad farsamo ayaa dhacay. Fadlan isku day mar kale." }]);
-    } finally {
-      setIsLoading(false);
+      assistantContent = data.error ? `Khalad: ${data.error}` : data.text ?? "";
+    } catch {
+      assistantContent = "Khalad farsamo ayaa dhacay. Fadlan isku day mar kale.";
     }
+    const assistantMessage = { role: "assistant" as const, content: assistantContent };
+    setMessages((prev) => [...prev, assistantMessage]);
+    setIsLoading(false);
+
+    // Persist to chat history
+    if (currentConversationId === null) {
+      const newConv = addConversation({
+        title: createTitleFromFirstMessage(userMsg),
+        messages: [userMessage, assistantMessage],
+      });
+      setCurrentConversationId(newConv.id);
+    } else {
+      const prev = getConversation(currentConversationId)?.messages ?? [];
+      updateConversation(currentConversationId, {
+        messages: [...prev, userMessage, assistantMessage],
+      });
+    }
+    refreshConversations();
   };
 
   const handleSuggestionClick = (suggestion: string) => {
@@ -85,9 +129,16 @@ export default function ChatPage() {
       <IslamicPattern />
 
       {/* Sidebar */}
-      <Sidebar 
-        isOpen={isSidebarOpen} 
-        setIsOpen={setIsSidebarOpen} 
+      <Sidebar
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
+        conversations={conversations}
+        currentConversationId={currentConversationId}
+        onNewChat={() => {
+          setCurrentConversationId(null);
+          setMessages([]);
+        }}
+        onSelectConversation={(id) => setCurrentConversationId(id)}
       />
 
       {/* Main Content */}
@@ -99,7 +150,11 @@ export default function ChatPage() {
              <Menu size={20} />
            </Button>
            <h1 className="font-semibold">Tafsiir Chat</h1>
-           <Button variant="ghost" size="icon" onClick={() => setMessages([])}>
+           <Button
+             variant="ghost"
+             size="icon"
+             onClick={() => { setCurrentConversationId(null); setMessages([]); }}
+           >
              <Plus size={20} />
            </Button>
         </header>
@@ -164,7 +219,7 @@ export default function ChatPage() {
           </div>
           <div className="text-center mt-3">
              <p className="text-[10px] text-muted-foreground/40 font-medium">
-               Powered by Tafsiir AI • Jawaabuhu way qaldanaan karaan.
+               Tafsiir AI • Waxaa lagu train gareeyay af Soomaali nadiif ah.
              </p>
           </div>
         </div>

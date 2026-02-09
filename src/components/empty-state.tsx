@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight, BookOpen, List, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { StarPattern } from "@/components/islamic-decorations";
+import { VerseOfTheDay } from "@/components/verse-of-the-day";
 import Image from "next/image";
 
 interface EmptyStateProps {
@@ -51,6 +53,10 @@ export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
             Assistant-kaaga gaarka ah ee tafsiirka iyo tarjumaadda Qur'aanka. 
             Weydii wax kasta oo ku saabsan aayadaha Qur'aanka.
           </p>
+        </div>
+
+        <div className="w-full max-w-xl mt-8">
+          <VerseOfTheDay />
         </div>
       </div>
 

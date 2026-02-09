@@ -434,3 +434,24 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ===== PRINT (e.g. surah page) ===== */
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  /* Surah content: ensure readable on white */
+  [class*="bg-card"],
+  [class*="bg-background"] {
+    background: #fff !important;
+    box-shadow: none !important;
+    border-color: #e5e7eb !important;
+  }
+  [class*="text-muted-foreground"] {
+    color: #374151 !important;
+  }
+  [class*="text-foreground"] {
+    color: #111 !important;
+  }
+}

@@ -1,9 +1,9 @@
 "use client";
 
-import { Sparkles, ArrowRight, BookOpen } from "lucide-react";
+import { Sparkles, ArrowRight, BookOpen, Shield } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-
+import { VerseOfTheDay } from "@/components/verse-of-the-day";
 interface LandingHeroProps {
   onStartChat: () => void;
 }
@@ -43,13 +43,20 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
             Weydii su'aalo ku saabsan aayadaha, tafsiirka, iyo tarjumaadda af Soomaaliga.
           </p>
 
+          {/* Stats */}
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm text-muted-foreground/80">
+            <span>114 Suurad</span>
+            <span>6,236 Aayah</span>
+            <span>Tarjumaad af Soomaaliga</span>
+          </div>
+
           {/* Feature Pills */}
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             {[
               "Tafsiirka Aayadaha", 
-              "Tarjumaadda Qur'aanka", 
               "Macnaha Suuradaha", 
-              "Asbaab al-Nuzuul"
+              "Asbaab al-Nuzuul", 
+              "Akhriska Qur'aanka"
             ].map((tag, i) => (
               <span 
                 key={i}
@@ -62,23 +69,54 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
           </div>
         </div>
 
-        {/* CTA Actions */}
-        <div className="flex flex-col items-center justify-center gap-2 pt-8 sm:flex-row sm:items-baseline sm:gap-3 animate-fade-up opacity-0" style={{ animationDelay: "500ms" }}>
-          <Button 
-            onClick={onStartChat}
-            size="lg" 
-            className="group relative h-14 min-w-[200px] overflow-hidden rounded-full text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 golden-glow gradient-premium border-0"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              Start Chatting
-              <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-            </span>
-            {/* Shimmer Effect */}
-            <div className="absolute inset-0 hidden group-hover:block animate-shimmer" />
-          </Button>
-          <p className="max-w-xs text-xs text-muted-foreground/60 sm:shrink-0">
-            Powered by Memvid • Authentic Sources
-          </p>
+        {/* CTA block: buttons → tagline → quick links */}
+        <div className="flex flex-col items-center gap-6 pt-8 animate-fade-up opacity-0" style={{ animationDelay: "500ms" }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
+            <Button 
+              onClick={onStartChat}
+              size="lg" 
+              className="group relative h-14 min-w-[200px] overflow-hidden rounded-full text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 golden-glow gradient-premium border-0"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Start Chatting
+                <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+              </span>
+              <div className="absolute inset-0 hidden group-hover:block animate-shimmer" />
+            </Button>
+            <Link href="/quran/1">
+              <Button variant="outline" size="lg" className="rounded-full border-primary/30 text-primary hover:bg-primary/10 h-14 px-6">
+                <BookOpen size={18} className="mr-2" />
+                Bilaab Suurat Al-Faatixa
+              </Button>
+            </Link>
+          </div>
+
+          <div className="w-full max-w-md mx-auto flex flex-col items-center gap-4">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-4 py-2.5 text-center">
+              <Shield size={14} className="shrink-0 text-primary" />
+              <p className="text-xs text-muted-foreground/90 leading-snug">
+                AI loogu talagalay Qur'aanka • Tarjumaad la aqoonsan yahay • Jawaab ku saleeysan Qur'aanka (ma ah ChatGPT/Gemini oo soo tuura)
+              </p>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground/70">
+              <Link href="/search" className="hover:text-primary transition-colors">
+                Raadi
+              </Link>
+              <span className="text-border">·</span>
+              <Link href="/quran" className="hover:text-primary transition-colors">
+                Qur'aanka
+              </Link>
+              <span className="text-border">·</span>
+              <Link href="/docs" className="hover:text-primary transition-colors">
+                API Docs
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Verse of the day */}
+        <div className="w-full max-w-xl mx-auto pt-8 animate-fade-up opacity-0" style={{ animationDelay: "600ms" }}>
+          <VerseOfTheDay />
         </div>
       </div>
     </div>

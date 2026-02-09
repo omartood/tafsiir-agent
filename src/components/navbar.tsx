@@ -5,12 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { BookOpen, MessageSquare, Info, Menu, X, FileCode } from "lucide-react";
+import { BookOpen, MessageSquare, Info, Menu, X, FileCode, Search } from "lucide-react";
 import { useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home", icon: null },
   { href: "/quran", label: "Qur'aanka", icon: BookOpen },
+  { href: "/search", label: "Raadi", icon: Search },
   { href: "/chat", label: "Chat", icon: MessageSquare },
   { href: "/docs", label: "API Docs", icon: FileCode },
   { href: "/about", label: "About", icon: Info },
