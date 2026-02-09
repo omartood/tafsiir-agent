@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Somali Tafsiir Agent 🌙
 
-## Getting Started
+An AI-powered Somali Quran Tafsiir assistant that provides grounded, accurate answers from the Somali Quranic interpretation (Tafsiir). Built with a focus on speed, reliability, and Somali language precision.
 
-First, run the development server:
+---
+
+## 🚀 Key Features
+
+- **Semantic Intelligence**: Understands religious context and Somali terminology using `gemini-embedding-001`.
+- **Hybrid Retrieval**: Powered by **[Memvid](https://memvid.io)**, combining vector similarity with lexical (keyword) matching to ensure exact verse lookups.
+- **Accurate Grounding**: Answers are strictly grounded in provided tafsiir data to prevent hallucinations.
+- **Modern UI**: A premium, responsive interface featuring Islamic-inspired aesthetics and dark mode support.
+
+---
+
+## 🛠 Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Vector Memory**: [@memvid/sdk](https://www.npmjs.com/package/@memvid/sdk) (Local `.mv2` storage)
+- **LLM**: [Google Gemini 2.0 Flash](https://aistudio.google.com/)
+
+---
+
+## 📁 Project Structure
+
+- **`src/app/`**: Application routes and Chat API logic.
+- **`src/components/`**: Reusable UI components (Sidebar, Message bubbles).
+- **`data/`**: Stores source JSON (`quran.json`) and the Memvid database (`tafsiir_memory.mv2`).
+- **`scripts/`**: Development tools for data ingestion and debugging.
+- **`pdf/`**: Original Somali Quran PDF documents.
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Prerequisites
+
+- Node.js 18+
+- A Google Gemini API Key
+
+### 2. Setup
+
+Clone the repository and install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env` file in the root directory:
+
+```env
+GOOGLE_API_KEY=your_gemini_api_key_here
+```
+
+### 3. Data Ingestion
+
+Before the chat works, you must process the data into the Memvid memory:
+
+```bash
+# Ingest data into tafsiir_memory.mv2
+npx tsx scripts/ingest.ts
+```
+
+### 4. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📖 Related Documents
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [Walkthrough](.gemini/antigravity/brain/a1a13f43-125b-4c30-b80c-a2c8304b1498/walkthrough.md): Technical details of the retrieval logic and fixes.
+- [Task Log](.gemini/antigravity/brain/a1a13f43-125b-4c30-b80c-a2c8304b1498/task.md): Current development status and milestones.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT License - Created for the Somali AI Community.
