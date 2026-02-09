@@ -25,7 +25,7 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
           </p>
           <p className="mt-4 text-sm font-medium tracking-widest text-muted-foreground uppercase opacity-80">
-            In the Name of Allah, the Most Gracious, the Most Merciful
+            Magaca Allaah, Naxariis Guud iyo mid Gaar ahba Naxariista
           </p>
         </div>
 
@@ -34,20 +34,20 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
           <div className="relative inline-block">
              <div className="absolute inset-0 blur-xl bg-primary/20 rounded-full"></div>
              <h1 className="relative text-5xl font-extrabold tracking-tight text-foreground sm:text-6xl md:text-7xl">
-              Tafsiir <span className="text-gradient">Qur'aanka</span>
+              Tafsiirka <span className="text-gradient">Qur'aanka</span>
             </h1>
           </div>
           
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground/80 sm:text-xl leading-relaxed">
-            Ogaaw macnaha qoto-dheer ee Qur'aanka Kariimka ah. 
-            Weydii su'aalo ku saabsan aayadaha, tafsiirka, iyo tarjumaadda af Soomaaliga.
+            Baro macnaha qoto-dheer ee Qur'aanka Kariimka ah. 
+            Weydii su'aalo ku saabsan aayadaha, tafsiirka, iyo tarjumaadda Af-Soomaaliga.
           </p>
 
           {/* Stats */}
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm text-muted-foreground/80">
             <span>114 Suurad</span>
-            <span>6,236 Aayah</span>
-            <span>Tarjumaad af Soomaaliga</span>
+            <span>6,236 Aayad</span>
+            <span>Tarjumaad Af-Soomaali</span>
           </div>
 
           {/* Feature Pills */}
@@ -78,7 +78,7 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
               className="group relative h-14 min-w-[200px] overflow-hidden rounded-full text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 golden-glow gradient-premium border-0"
             >
               <span className="relative z-10 flex items-center gap-2">
-                Start Chatting
+                Bilaab Wada-hadal
                 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
               </span>
               <div className="absolute inset-0 hidden group-hover:block animate-shimmer" />
@@ -95,7 +95,7 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-4 py-2.5 text-center">
               <Shield size={14} className="shrink-0 text-primary" />
               <p className="text-xs text-muted-foreground/90 leading-snug">
-                AI loogu talagalay Qur'aanka • Tarjumaad la aqoonsan yahay • Jawaab ku saleeysan Qur'aanka (ma ah ChatGPT/Gemini oo soo tuura)
+                Caawiye AI oo loogu talagalay Qur'aanka • Tarjumaad la aqoonsan yahay • Jawaab ku saleeysan Qur'aanka (ma ah ChatGPT/Gemini oo soo tuura)
               </p>
             </div>
             <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground/70">
@@ -108,7 +108,7 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
               </Link>
               <span className="text-border">·</span>
               <Link href="/docs" className="hover:text-primary transition-colors">
-                API Docs
+                Dukumentiyada API
               </Link>
             </div>
           </div>

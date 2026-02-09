@@ -50,7 +50,7 @@ export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
             Tafsiir AI
           </h1>
           <p className="text-lg text-muted-foreground/80 leading-relaxed font-light">
-            Assistant-kaaga gaarka ah ee tafsiirka iyo tarjumaadda Qur'aanka. 
+            Caawiye gaar ah ee tafsiirka iyo tarjumaadda Qur'aanka. 
             Weydii wax kasta oo ku saabsan aayadaha Qur'aanka.
           </p>
         </div>

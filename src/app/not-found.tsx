@@ -9,7 +9,7 @@ export default function NotFound() {
           بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
         </p>
         <h1 className="text-4xl font-bold tracking-tight text-foreground">
-          Sahifa lama helin
+          Bogga lama helin
         </h1>
         <p className="text-muted-foreground/80">
           Bogga aad raadinayso ma jiro. Ku noqo bogga weyn ee Tafsiir AI.

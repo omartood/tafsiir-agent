@@ -4,6 +4,17 @@ import { cn } from "@/lib/utils";
 import { Sparkles, User, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+
+const ARABIC_REGEX = /[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]/;
+function getTextFromChildren(children: React.ReactNode): string {
+  if (typeof children === "string") return children;
+  if (Array.isArray(children)) return children.map(getTextFromChildren).join("");
+  if (children && typeof children === "object" && "props" in children) return getTextFromChildren((children as any).props?.children);
+  return "";
+}
 
 interface Message {
   role: "user" | "assistant";
@@ -53,9 +64,84 @@ export function ChatMessage({ message }: ChatMessageProps) {
               : "rounded-[20px] rounded-bl-md bg-card border border-border/50 text-foreground"
           )}
         >
-          <div className="whitespace-pre-wrap font-outfit">
-            {message.content}
-          </div>
+          {isUser ? (
+            <div className="whitespace-pre-wrap font-outfit">
+              {message.content}
+            </div>
+          ) : (
+            <div className="chat-message-assistant-content prose prose-sm dark:prose-invert max-w-none prose-headings:mt-4 prose-headings:mb-2 prose-p:my-2 prose-strong:text-foreground prose-strong:font-semibold">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
+                components={{
+                  // Handle custom HTML div for Arabic verses (<div class="arabic-verse">)
+                  div: ({ node, className, children, ...props }) => {
+                    const isArabicVerse = className === "arabic-verse";
+                    return (
+                      <div
+                        className={cn(
+                          className,
+                          isArabicVerse && "my-6 p-6 rounded-2xl bg-primary/5 border border-primary/10 text-center font-arabic text-3xl leading-[2.2] text-foreground/90 shadow-inner"
+                        )}
+                        dir={isArabicVerse ? "rtl" : undefined}
+                        {...props}
+                      >
+                        {children}
+                      </div>
+                    );
+                  },
+                  // Enhanced headings
+                  h3: ({ node, children, ...props }) => (
+                    <h3 className="text-lg font-bold text-primary/90 flex items-center gap-2 border-b border-border/30 pb-2 mt-6 mb-4" {...props}>
+                      {children}
+                    </h3>
+                  ),
+                  // Improved text: detect if paragraph is mostly Arabic
+                  // Improved text: detect if paragraph is primarily Arabic
+                  p: ({ node, children, ...props }) => {
+                    const textContent = getTextFromChildren(children);
+                    const isArabic = ARABIC_REGEX.test(textContent);
+                    
+                    if (isArabic) {
+                      return (
+                        <div 
+                          className="my-6 p-6 rounded-2xl bg-primary/5 border border-primary/10 text-center font-arabic text-3xl leading-[2.2] text-foreground/90 shadow-inner"
+                          dir="rtl"
+                        >
+                          {children}
+                        </div>
+                      );
+                    }
+                    
+                    return (
+                      <p className="leading-relaxed my-3 text-foreground/90" {...props}>
+                        {children}
+                      </p>
+                    );
+                  },
+                  // Lists
+                  ul: ({ node, children, ...props }) => (
+                    <ul className="list-disc pl-5 my-4 space-y-2" {...props}>{children}</ul>
+                  ),
+                  ol: ({ node, children, ...props }) => (
+                    <ol className="list-decimal pl-5 my-4 space-y-2" {...props}>{children}</ol>
+                  ),
+                  // Horizontal rule
+                  hr: ({ node, ...props }) => (
+                    <hr className="my-6 border-t border-border/40" {...props} />
+                  ),
+                  // Bold text
+                  strong: ({ node, children, ...props }) => (
+                    <strong className="font-semibold text-primary/80" {...props}>
+                      {children}
+                    </strong>
+                  ),
+                }}
+              >
+                {message.content}
+              </ReactMarkdown>
+            </div>
+          )}
         </div>
 
         {/* Message Actions (Copy, etc.) - Only for Assistant for now */}

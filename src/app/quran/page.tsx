@@ -75,7 +75,7 @@ export default function QuranPage() {
               view === "juz" ? "bg-primary/10 text-primary border border-primary/20" : "bg-card/60 text-muted-foreground border border-border/50 hover:bg-muted/50"
             )}
           >
-            <Layers size={16} /> 30 Juz
+            <Layers size={16} /> 30-ka Jus
           </button>
         </div>
 
@@ -88,7 +88,7 @@ export default function QuranPage() {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Raadi surah... (magac ama nambar)"
+                placeholder="Raadi suurad... (magac ama nambar)"
                 className="w-full rounded-xl border border-border/50 bg-card/60 backdrop-blur-sm pl-10 pr-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all placeholder:text-muted-foreground/40"
               />
             </div>
@@ -124,7 +124,7 @@ export default function QuranPage() {
                   className="flex flex-col items-center justify-center rounded-2xl border border-border/50 bg-card/40 p-4 transition-all hover:bg-card/80 hover:border-primary/20 hover:shadow-lg"
                 >
                   <span className="text-2xl font-bold text-primary">{juzNum}</span>
-                  <span className="text-xs text-muted-foreground mt-1">Juz {juzNum}</span>
+                  <span className="text-xs text-muted-foreground mt-1">Jus {juzNum}</span>
                   <span className="text-[10px] text-muted-foreground/60 mt-0.5">
                     {meta?.nameTransliteration} {ayahNum}
                   </span>
@@ -166,7 +166,7 @@ export default function QuranPage() {
                     {surah.type}
                   </span>
                   <span className="text-[11px] text-muted-foreground/60">
-                    {surah.ayahCount} aayah
+                    {surah.ayahCount} aayadood
                   </span>
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function QuranPage() {
         {view === "surahs" && filtered.length === 0 && (
           <div className="text-center py-20 text-muted-foreground/60">
             <BookOpen size={48} className="mx-auto mb-4 opacity-30" />
-            <p className="text-lg">Surah lama helin</p>
+            <p className="text-lg">Suurad lama helin</p>
             <p className="text-sm mt-1">Isku day raadin kale</p>
           </div>
         )}

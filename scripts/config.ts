@@ -9,7 +9,7 @@ dotenv.config({ path: path.join(process.cwd(), ".env") });
 
 export const DATA_DIR = path.join(process.cwd(), "data");
 export const MEMORY_FILE = path.join(DATA_DIR, "tafsiir.mv2");
-export const QURAN_JSON_PATH = path.join(DATA_DIR, "quran.json");
+export const QURAN_JSON_PATH = path.join(DATA_DIR, "jus.json");
 
 export const GEMINI_EMBEDDING_MODEL = "gemini-embedding-001";
 

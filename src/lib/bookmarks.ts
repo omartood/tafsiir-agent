@@ -33,3 +33,9 @@ export function removeBookmark(surah: number, ayah: number): void {
 export function isBookmarked(surah: number, ayah: number): boolean {
   return getBookmarks().some((x) => x.surah === surah && x.ayah === ayah);
 }
+
+export function clearAllBookmarks(): void {
+  try {
+    localStorage.removeItem(KEY);
+  } catch {}
+}

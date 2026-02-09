@@ -10,17 +10,17 @@ const features = [
   {
     icon: BookOpen,
     title: "Qur'aan oo buuxa",
-    description: "114-ka Surah oo dhan oo leh qoraalka Carabiga iyo tarjumaadda af Soomaaliga.",
+    description: "114-ka Suuradood oo dhan oo leh qoraalka Carabiga iyo tarjumaadda Af-Soomaaliga.",
   },
   {
     icon: Cpu,
     title: "Tafsiir AI",
-    description: "AI-ga waxaa lagu train gareeyay af Soomaali nadiif ah. Weydii su'aalo ku saabsan aayadaha, macnahooda, iyo tafsiirkooda wuxuuna kuu jawaabaa jawaab sax ah.",
+    description: "Caawiye AI-ga waxaa lagu tababaray Af-Soomaali nadiif ah. Weydii su'aalo ku saabsan aayadaha, macnahooda, iyo tafsiirkooda wuxuuna kuu jawaabaa jawaab sax ah.",
   },
   {
     icon: Globe,
-    title: "Af Soomaali",
-    description: "Tarjumaadda ugu saxda badan ee Qur'aanka af Soomaaliga, laga helay ilo la isku halleyn karo.",
+    title: "Af-Soomaali",
+    description: "Tarjumaadda ugu saxda badan ee Qur'aanka Af-Soomaaliga, laga helay ilo la isku halleyn karo.",
   },
   {
     icon: Heart,
@@ -82,7 +82,7 @@ export default function AboutPage() {
                 <span className="font-semibold text-foreground">Tafsiir AI</span>
               </div>
               <p className="text-sm text-muted-foreground/90 leading-relaxed">
-                Waa AI-agent loogu talagalay Qur'aanka oo lagu tababaray tafsiirka iyo tarjumaadda. Waxaa uu ku saleeyaa jawaabaha Qur'aanka iyo ilo la aqoonsan yahay — ma bixinayo wax aan ka soo bixin Qur'aanka. Tarjumaad iyo tafsiir af Soomaali ah oo la isku halleyn karo.
+                Waa Caawiye AI loogu talagalay Qur'aanka oo lagu tababaray tafsiirka iyo tarjumaadda. Waxaa uu ku saleeyaa jawaabaha Qur'aanka iyo ilo la aqoonsan yahay — ma bixinayo wax aan ka soo bixin Qur'aanka. Tarjumaad iyo tafsiir Af-Soomaali ah oo la isku halleyn karo.
               </p>
             </div>
             <div className="rounded-2xl border border-border/50 bg-card/40 p-6 space-y-3">
@@ -91,7 +91,7 @@ export default function AboutPage() {
                 <span className="font-semibold text-foreground/80">ChatGPT, Gemini, iwm.</span>
               </div>
               <p className="text-sm text-muted-foreground/80 leading-relaxed">
-                Waa AI guud oo loogu talagalay wax kasta. Markaad weydiiso tafsiir Qur'aan, inta badan waxay soo saaraan jawaab laga soo tuuray (out of the box) oo aan ku tiirsanayn ilo Qur'aan ah oo cad — sidaas darteed jawaabuhu way khaldamaan karaan.
+                Waa AI guud oo loogu talagalay wax kasta. Markaad weydiiso tafsiir Qur'aan, inta badan waxay soo saaraan jawaab aan la hubin (out of the box) oo aan ku tiirsanayn ilo Qur'aan ah oo cad — sidaas darteed jawaabuhu way khaldami karaan.
               </p>
             </div>
           </div>
@@ -102,17 +102,17 @@ export default function AboutPage() {
           <p className="bismillah text-2xl text-gold/80">
             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
           </p>
-          <h2 className="text-2xl font-bold text-foreground">Ujeedadayada</h2>
+          <h2 className="text-2xl font-bold text-foreground">Ujeedkeenna</h2>
           <p className="text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed">
-            Ujeedadayadu waa in aan u fududeeyno dadka Soomaaliyeed in ay fahmaan Qur'aanka 
-            Kariimka iyagoo adeegsanaya technology-ga casriga ah. Waxaan rabnaa in qof kasta 
-            oo Soomaali ah uu helo tarjumaad iyo tafsiir sax ah oo af Soomaali ku qoran.
+            Ujeedkeennu waa in aan u fududeeyno dadka Soomaaliyeed in ay fahmaan Qur'aanka 
+            Kariimka iyagoo adeegsanaya teknoolajiyadda casriga ah. Waxaan rabnaa in qof kasta 
+            oo Soomaali ah uu helo tarjumaad iyo tafsiir sax ah oo Af-Soomaali ku qoran.
           </p>
         </div>
 
         {/* Tech Stack */}
         <div className="mt-16 text-center space-y-4">
-          <h2 className="text-xl font-bold text-foreground/80">Technology-ga</h2>
+          <h2 className="text-xl font-bold text-foreground/80">Teknoolajiyadda</h2>
           <div className="flex flex-wrap justify-center gap-3">
             {["Next.js", "Gemini AI", "Memvid", "Tailwind CSS", "TypeScript"].map((tech) => (
               <span
@@ -128,7 +128,7 @@ export default function AboutPage() {
         {/* Developed by & Repo */}
         <div className="mt-16 pt-8 border-t border-border/40 text-center space-y-3">
           <p className="text-muted-foreground/80">
-            Waxaa horumarinyey <strong className="text-foreground/90">ToodMind</strong>
+            Waxaa horumariyey <strong className="text-foreground/90">ToodMind</strong>
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
@@ -138,7 +138,7 @@ export default function AboutPage() {
               className="inline-flex items-center gap-2 rounded-xl border border-border/50 bg-card/60 px-5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-card/80 hover:border-primary/20 transition-all"
             >
               <Github size={18} />
-              Project repo
+              Keydka Mashruuca
             </Link>
             <Link
               href="https://github.com/toodmind/tafsiir-agent/issues"

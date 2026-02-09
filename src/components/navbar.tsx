@@ -9,12 +9,12 @@ import { BookOpen, MessageSquare, Info, Menu, X, FileCode, Search } from "lucide
 import { useState } from "react";
 
 const navLinks = [
-  { href: "/", label: "Home", icon: null },
+  { href: "/", label: "Bogga Hore", icon: null },
   { href: "/quran", label: "Qur'aanka", icon: BookOpen },
   { href: "/search", label: "Raadi", icon: Search },
-  { href: "/chat", label: "Chat", icon: MessageSquare },
+  { href: "/chat", label: "Wada-hadal", icon: MessageSquare },
   { href: "/docs", label: "API Docs", icon: FileCode },
-  { href: "/about", label: "About", icon: Info },
+  { href: "/about", label: "Ku Saabsan", icon: Info },
 ];
 
 export function Navbar() {
@@ -37,8 +37,8 @@ export function Navbar() {
             <h1 className="text-lg font-bold tracking-tight text-gradient leading-tight">
               Tafsiir AI
             </h1>
-            <p className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
-              Qur'aan Assistant
+            <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+              Caawiye Qur'aan
             </p>
           </div>
         </Link>

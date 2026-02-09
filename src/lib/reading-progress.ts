@@ -19,3 +19,9 @@ export function markSurahRead(surah: number): void {
 export function getReadCount(): number {
   return getReadSurahs().length;
 }
+
+export function clearReadProgress(): void {
+  try {
+    localStorage.removeItem(KEY);
+  } catch {}
+}

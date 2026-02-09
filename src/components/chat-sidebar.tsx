@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plus, MessageSquare, Settings, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, User } from "lucide-react";
+import { Plus, MessageSquare, Settings, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, User, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { IslamicPattern } from "@/components/islamic-decorations";
@@ -38,9 +38,10 @@ interface SidebarPropsExtended extends SidebarProps {
   currentConversationId?: string | null;
   onNewChat?: () => void;
   onSelectConversation?: (id: string) => void;
+  onDeleteConversation?: (id: string) => void;
 }
 
-export function Sidebar({ isOpen, setIsOpen, className, conversations = [], currentConversationId = null, onNewChat, onSelectConversation }: SidebarPropsExtended) {
+export function Sidebar({ isOpen, setIsOpen, className, conversations = [], currentConversationId = null, onNewChat, onSelectConversation, onDeleteConversation }: SidebarPropsExtended) {
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [keydiyeyOpen, setKeydiyeyOpen] = useState(true);
 
@@ -98,18 +99,18 @@ export function Sidebar({ isOpen, setIsOpen, className, conversations = [], curr
             <ChevronRight size={18} />
           </Button>
           <div className="h-px w-8 bg-border/50 my-1" />
-          <Button variant="ghost" size="icon" onClick={() => onNewChat?.()} title="New Chat" className="h-9 w-9 rounded-lg">
+          <Button variant="ghost" size="icon" onClick={() => onNewChat?.()} title="Wada-hadal Cusub" className="h-9 w-9 rounded-lg">
             <Plus size={18} />
           </Button>
-          <button onClick={() => setIsOpen(true)} className="p-2 rounded-lg hover:bg-muted/50 text-muted-foreground" title="Recent">
+          <button onClick={() => setIsOpen(true)} className="p-2 rounded-lg hover:bg-muted/50 text-muted-foreground" title="Dhowaan">
             <MessageSquare size={18} />
           </button>
           <button onClick={() => setIsOpen(true)} className="p-2 rounded-lg hover:bg-muted/50 text-muted-foreground" title="Keydiyey">
             <Heart size={18} className="text-red-500/70" />
           </button>
-          <button onClick={() => setIsOpen(true)} className="p-2 rounded-lg hover:bg-muted/50 text-muted-foreground mt-auto" title="Settings">
+          <Link href="/settings" className="p-2 rounded-lg hover:bg-muted/50 text-muted-foreground mt-auto" title="Dookhyada">
             <Settings size={18} />
-          </button>
+          </Link>
         </div>
 
         {/* Full sidebar (when expanded) */}
@@ -141,14 +142,14 @@ export function Sidebar({ isOpen, setIsOpen, className, conversations = [], curr
                   onClick={() => onNewChat?.()}
                 >
                   <Plus size={20} />
-                  <span className="font-medium">New Chat</span>
+                  <span className="font-medium">Wada-hadal Cusub</span>
                 </Button>
               </div>
 
               {/* Recent Chats */}
               <div className="relative z-10 flex-1 overflow-y-auto px-3 py-2 min-h-0">
                 <div className="text-xs font-semibold text-muted-foreground/60 mb-2 px-2 uppercase tracking-wider">
-                  Recent
+                  Dhowaan
                 </div>
                 {conversations.length === 0 ? (
                   <p className="px-3 py-2 text-xs text-muted-foreground/60">
@@ -157,19 +158,38 @@ export function Sidebar({ isOpen, setIsOpen, className, conversations = [], curr
                 ) : (
                   <div className="space-y-1">
                     {conversations.map((chat) => (
-                      <button
+                      <div
                         key={chat.id}
-                        onClick={() => onSelectConversation?.(chat.id)}
                         className={cn(
-                          "w-full flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-all group text-left",
+                          "group/item w-full flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-all text-left",
                           currentConversationId === chat.id
                             ? "bg-primary/10 text-primary"
                             : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                         )}
                       >
-                        <MessageSquare size={16} className="shrink-0 text-muted-foreground/70 group-hover:text-primary transition-colors" />
-                        <span className="truncate flex-1">{chat.title}</span>
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => onSelectConversation?.(chat.id)}
+                          className="flex items-center gap-3 flex-1 min-w-0"
+                        >
+                          <MessageSquare size={16} className="shrink-0 text-muted-foreground/70 group-hover/item:text-primary transition-colors" />
+                          <span className="truncate">{chat.title}</span>
+                        </button>
+                        {onDeleteConversation && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onDeleteConversation(chat.id);
+                            }}
+                            className="shrink-0 p-1.5 rounded-md text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 opacity-0 group-hover/item:opacity-100 transition-opacity"
+                            title="Tirtir (Delete)"
+                            aria-label="Tirtir wada-hadalkan"
+                          >
+                            <Trash2 size={14} />
+                          </button>
+                        )}
+                      </div>
                     ))}
                   </div>
                 )}
@@ -181,14 +201,14 @@ export function Sidebar({ isOpen, setIsOpen, className, conversations = [], curr
                   onClick={toggleKeydiyey}
                   className="w-full flex items-center justify-between gap-2 rounded-lg px-2 py-2.5 text-xs font-semibold text-muted-foreground/60 uppercase tracking-wider hover:bg-muted/40 hover:text-muted-foreground transition-colors"
                 >
-                  <span>Keydiyey</span>
+                  <span>Keydsan</span>
                   {keydiyeyOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                 </button>
                 {keydiyeyOpen && (
                   <>
                     {bookmarks.length === 0 ? (
                       <p className="px-3 py-2 text-xs text-muted-foreground/60">
-                        Wax aayah ah lama keydin. Ku dar aayah suuradaha marka aad akhrisato.
+                        Wax aayad ah lama keydin. Ku dar aayad suuradaha marka aad akhrisato.
                       </p>
                     ) : (
                       <div className="space-y-1 max-h-40 overflow-y-auto">
@@ -201,7 +221,7 @@ export function Sidebar({ isOpen, setIsOpen, className, conversations = [], curr
                           >
                             <Heart size={14} className="text-red-500/70 shrink-0" fill="currentColor" />
                             <span className="truncate flex-1">
-                              {b.surahName || `Surah ${b.surah}`} : {b.ayah}
+                              {b.surahName || `Suurad ${b.surah}`} : {b.ayah}
                             </span>
                           </Link>
                         ))}
@@ -209,18 +229,21 @@ export function Sidebar({ isOpen, setIsOpen, className, conversations = [], curr
                     )}
                   </>
                 )}
-                <button className="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted/50 hover:text-foreground transition-all group">
+                <Link
+                  href="/settings"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted/50 hover:text-foreground transition-all group"
+                >
                   <Settings size={16} className="text-muted-foreground/70 group-hover:text-primary transition-colors" />
-                  <span>Settings</span>
-                </button>
+                  <span>Dookhyada</span>
+                </Link>
 
                 <div className="mt-4 flex items-center gap-3 px-3 pt-4 border-t border-border/30">
                   <div className="h-8 w-8 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-foreground shrink-0">
                     <User size={16} />
                   </div>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-medium">User Account</span>
-                    <span className="text-[10px] text-muted-foreground">Free Plan</span>
+                    <span className="text-xs font-medium">Koontada</span>
                   </div>
                 </div>
               </div>

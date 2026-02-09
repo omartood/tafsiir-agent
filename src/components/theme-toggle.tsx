@@ -14,6 +14,14 @@ export function ThemeToggle() {
     setIsDark(dark);
   }, []);
 
+  useEffect(() => {
+    const onThemeChange = (e: CustomEvent<{ dark: boolean }>) => {
+      setIsDark(e.detail.dark);
+    };
+    window.addEventListener("tafsiir-theme-changed", onThemeChange as EventListener);
+    return () => window.removeEventListener("tafsiir-theme-changed", onThemeChange as EventListener);
+  }, []);
+
   const toggle = () => {
     const newDark = !isDark;
     setIsDark(newDark);

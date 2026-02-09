@@ -9,26 +9,26 @@ import { LandingHero } from "@/components/landing-hero";
 import { useRouter } from "next/navigation";
 
 const howItWorks = [
-  { icon: BookOpen, step: "1", title: "Akhri Qur'aanka", desc: "Browso 114-ka surah ee tarjumaad af Soomaaliga." },
+  { icon: BookOpen, step: "1", title: "Akhri Qur'aanka", desc: "Baar 114-ka suuradood ee tarjumaad Af-Soomaaliga ah." },
   { icon: MessageCircle, step: "2", title: "Weydii su'aal", desc: "Weydii wax kasta oo ku saabsan aayadaha iyo tafsiirka." },
-  { icon: CheckCircle, step: "3", title: "Hel jawaab", desc: "AI-gu wuxuu kuu jawaabaa jawaab sax ah waayo waxaa lagu train gareeyay af Soomaali nadiif ah." },
+  { icon: CheckCircle, step: "3", title: "Hel jawaab", desc: "Caawiye AI-gu wuxuu kuu siinayaa jawaab sax ah waayo waxaa lagu habeyay tafsiir Af-Soomaali ah oo suuban." },
 ];
 
 const sampleQuestions = [
   {
     icon: BookOpen,
     title: "Suurat Al-Faatixa",
-    question: "Tafsiirka Suuradda Al-Faatixa ee af Soomaaliga",
+    question: "Tafsiirka Suuradda Al-Faatixa ee Af-Soomaaliga",
   },
   {
     icon: Star,
     title: "Suurat Al-Baqarah",
-    question: "Maxay ka dhigan tahay Aayat Al-Kursi?",
+    question: "Maxay ka dhigan tahay Aayatul Kursi?",
   },
   {
     icon: BookMarked,
-    title: "Suurat Yasiin",
-    question: "Tarjum iyo tafsiir Suurat Yasiin",
+    title: "Suurat Yaasiin",
+    question: "Tarjum oo fasir Suurat Yaasiin",
   },
 ];
 
@@ -99,7 +99,7 @@ export default function Home() {
                     <span className="font-semibold text-foreground">Tafsiir AI</span>
                   </div>
                   <p className="text-sm text-muted-foreground/90 leading-relaxed">
-                    Waa <strong className="text-foreground/90">AI-agent loogu talagalay Qur'aanka</strong> oo lagu tababaray tafsiirka iyo tarjumaadda. Waxaa uu ku saleeyaa jawaabaha <strong className="text-foreground/90">Qur'aanka iyo ilo la aqoonsan yahay</strong> — ma bixinayo wax aan ka soo bixin Qur'aanka.
+                    Waa <strong className="text-foreground/90">Caawiye AI loogu talagalay Qur'aanka</strong> oo lagu tababaray tafsiirka iyo tarjumaadda. Waxaa uu ku saleeyaa jawaabaha <strong className="text-foreground/90">Qur'aanka iyo ilo la aqoonsan yahay</strong> — ma bixinayo wax aan ka soo bixin Qur'aanka.
                   </p>
                 </div>
                 <div className="rounded-2xl border border-border/40 bg-card/30 p-5 space-y-3">
@@ -108,12 +108,12 @@ export default function Home() {
                     <span className="font-semibold text-foreground/80">ChatGPT, Gemini, iwm.</span>
                   </div>
                   <p className="text-sm text-muted-foreground/80 leading-relaxed">
-                    Waa <strong className="text-foreground/80">AI guud</strong> oo loogu talagalay wax kasta. Markaad weydiiso tafsiir, inta badan waxay <strong className="text-foreground/80">soo saaraan jawaab laga soo tuuray</strong> (out of the box) oo aan ku tiirsanayn ilo Qur'aan ah oo cad — sidaas darteed jawaabuhu way khaldamaan karaan.
+                    Waa <strong className="text-foreground/80">AI guud</strong> oo loogu talagalay wax kasta. Markaad weydiiso tafsiir, inta badan waxay <strong className="text-foreground/80">soo saaraan jawaab aan la hubin</strong> (out of the box) oo aan ku tiirsanayn ilo Qur'aan ah oo cad — sidaas darteed jawaabuhu way khaldami karaan.
                   </p>
                 </div>
               </div>
               <p className="text-center text-xs text-muted-foreground/70 mt-3 max-w-xl mx-auto">
-                Tafsiir AI wuxuu kuu bixinayaa jawaab lagu xaqiijiyay tarjumaad iyo tafsiir af Soomaali ah oo la isku halleyn karo.
+                Tafsiir AI wuxuu kuu bixinayaa jawaab lagu xaqiijiyay tarjumaad iyo tafsiir Af-Soomaali ah oo la isku halleyn karo.
               </p>
             </div>
 

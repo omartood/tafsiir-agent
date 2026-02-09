@@ -1,99 +1,111 @@
-# Somali Tafsiir Agent 🌙
+<div align="center">
+  <img src="public/logo.svg" alt="Logo" width="100">
 
-An AI-powered Somali Quran Tafsiir assistant that provides grounded, accurate answers from the Somali Quranic interpretation (Tafsiir). Built with a focus on speed, reliability, and Somali language precision.
+  # Somali Tafsiir Agent
+
+  > **A high-performance, AI-driven assistant for Somali Quranic Tafsiir.**
+
+  [![Framework](https://img.shields.io/badge/Framework-Next.js%2015-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+  [![AI Model](https://img.shields.io/badge/AI-Gemini%202.0%20Flash-blue?style=flat-square&logo=google-gemini)](https://aistudio.google.com/)
+  [![Vector DB](https://img.shields.io/badge/Memory-Memvid-8a2be2?style=flat-square)](https://memvid.com)
+  [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+</div>
+
+An AI-powered Somali Quran Tafsiir assistant that provides grounded, accurate answers from Somali Quranic interpretation. Designed for the Somali AI community to make religious knowledge more accessible through state-of-the-art retrieval technology.
 
 ---
 
-## 🚀 Key Features
+## 📖 Knowledge Base & Support
 
-- **Semantic Intelligence**: Understands religious context and Somali terminology using `gemini-embedding-001`.
-- **Hybrid Retrieval**: Powered by **[Memvid](https://memvid.com)**, combining vector similarity with lexical (keyword) matching to ensure exact verse lookups.
-- **Accurate Grounding**: Answers are strictly grounded in provided tafsiir data to prevent hallucinations.
-- **Modern UI**: A premium, responsive interface featuring Islamic-inspired aesthetics and dark mode support.
+### 🧠 Model Memory
+The intelligence of this agent is anchored by `data/trained.json`. This dataset serves as the primary source for creating the model's semantic memory, ensuring that every response is derived from authenticated Somali Tafsiir.
+
+### 🎯 Supported Scope
+*   **Current AI Agent Focus**: Optimized for **Surah Al-Fatiha** and the **30th Juz (Juz Amma)**.
+*   **System Capability**: While the AI agent is currently tuned for these sections, the underlying **API and architecture support the entire Holy Quran (all 114 Surahs)**. You can easily extend the agent's memory to include the full Quran.
+
+---
+
+## ✨ Key Features
+
+- **🎯 Semantic Precision**: Leverages `gemini-embedding-001` to understand deep religious context and Somali nuances.
+- **⚡ Hybrid Retrieval**: Integrates **[Memvid](https://memvid.com)** for a powerful combination of vector similarity and lexical matching, ensuring exact verse lookups.
+- **🛡️ Hallucination-Free**: strictly grounded in provided tafsiir data. If the information isn't in the context, the agent won't invent it.
+- **📱 Premium Experience**: A modern, responsive interface with Islamic-inspired aesthetics, smooth micro-animations, and full dark mode support.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Core**: [Next.js 15](https://nextjs.org/) (App Router, React 19)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) (Modern CSS engine)
 - **Vector Memory**: [@memvid/sdk](https://www.npmjs.com/package/@memvid/sdk) (Local `.mv2` storage)
-- **LLM**: [Google Gemini 2.0 Flash](https://aistudio.google.com/)
+- **Intelligence**: [Google Gemini 2.0 Flash](https://aistudio.google.com/)
+- **Data Source**: Custom Somali Tafsiir JSON (`data/trained.json`)
 
 ---
 
 ## 📁 Project Structure
 
-- **`src/app/`**: Application routes and Chat API logic.
-- **`src/components/`**: Reusable UI components (Sidebar, Message bubbles).
-- **`data/`**: Stores source JSON (`quran.json`) and the Memvid database (`tafsiir.mv2`).
-- **`scripts/`**: Development tools for data ingestion and debugging.
-- **`pdf/`**: Original Somali Quran PDF documents.
+```bash
+├── data/           # Model memory source (trained.json) & Memvid DB
+├── src/
+│   ├── app/        # Chat API logic and application routes
+│   └── components/ # UI Components (Sidebar, Messaging, etc.)
+├── scripts/        # Ingestion and development tools
+└── public/         # Static assets and religious icons
+```
 
 ---
 
 ## ⚙️ Getting Started
 
 ### 1. Prerequisites
-
 - Node.js 18+
-- A Google Gemini API Key
+- [Google Gemini API Key](https://aistudio.google.com/)
 
 ### 2. Setup
-
-Clone the repository and install dependencies:
-
 ```bash
+git clone https://github.com/your-repo/tafsiir-agent.git
+cd tafsiir-agent
 npm install
 ```
 
-Create a `.env` file in the root directory:
-
+### 3. Environment
+Create a `.env` file in the root:
 ```env
 GOOGLE_API_KEY=your_gemini_api_key_here
 ```
 
-### 3. Data Ingestion
-
-Before the chat works, you must process the data into the Memvid memory:
-
+### 4. Initialize Memory
+Process the `trained.json` data into the high-speed Memvid vector database:
 ```bash
-# Ingest data into tafsiir.mv2
-npx tsx scripts/ingest.ts
+npm run ingest
 ```
 
-### 4. Run Development Server
-
+### 5. Launch
 ```bash
 npm run dev
 ```
 
 ---
 
-## 📡 Public Quran API
+## 📡 Modern Quran API
 
-The app exposes a **public REST API** for the Quran JSON (Arabic + Somali translation):
+The platform includes a robust **Public REST API** for accessing the Quran (Arabic + Somali translation) programmatically.
 
-| Endpoint                         | Description                    |
-| -------------------------------- | ------------------------------ |
-| `GET /api/quran`                 | API info and usage             |
-| `GET /api/quran/surahs`          | List all 114 surahs (metadata) |
-| `GET /api/quran?surah=1`         | All verses of surah 1          |
-| `GET /api/quran?surah=1&ayah=2`  | Single verse (surah 1, ayah 2) |
-| `GET /api/quran/surahs/1`        | Same as above (path style)     |
-| `GET /api/quran/surahs/1?ayah=2` | Single verse (path style)      |
+| Endpoint | Action |
+| :--- | :--- |
+| `GET /api/quran/surahs` | List all 114 Surahs |
+| `GET /api/quran?surah=X` | Get all verses of Surah X |
+| `GET /api/quran?surah=X&ayah=Y` | Get single verse (Surah X, Ayah Y) |
 
-No authentication required. Full documentation: **[API Docs](/docs)** (or open `/docs` in the running app).
+*Full documentation available at `/docs` in the running application.*
 
 ---
 
-## 📖 Related Documents
-
-- [Walkthrough](.gemini/antigravity/brain/a1a13f43-125b-4c30-b80c-a2c8304b1498/walkthrough.md): Technical details of the retrieval logic and fixes.
-- [Task Log](.gemini/antigravity/brain/a1a13f43-125b-4c30-b80c-a2c8304b1498/task.md): Current development status and milestones.
-
----
+## 🤝 Contributing
+Created for the **Somali AI Community**. Help us bridge tradition and technology.
 
 ## 📝 License
-
-MIT License - Created for the Somali AI Community.
+Distributed under the MIT License. See `LICENSE` for more information.

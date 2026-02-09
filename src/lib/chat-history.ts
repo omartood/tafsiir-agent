@@ -67,6 +67,10 @@ export function deleteConversation(id: string): void {
   saveConversations(getConversations().filter((c) => c.id !== id));
 }
 
+export function clearAllConversations(): void {
+  saveConversations([]);
+}
+
 export function createTitleFromFirstMessage(content: string, maxLen = 40): string {
   const trimmed = content.trim();
   if (!trimmed) return "Su'aal cusub";

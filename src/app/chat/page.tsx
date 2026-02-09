@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Send, Menu, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -14,11 +14,12 @@ import {
   getConversation,
   addConversation,
   updateConversation,
+  deleteConversation,
   createTitleFromFirstMessage,
   type ChatMessage as StoredMessage,
 } from "@/lib/chat-history";
 
-export default function ChatPage() {
+function ChatPageContent() {
   const searchParams = useSearchParams();
   const [conversations, setConversations] = useState<{ id: string; title: string; updatedAt: number }[]>([]);
   const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
@@ -139,6 +140,14 @@ export default function ChatPage() {
           setMessages([]);
         }}
         onSelectConversation={(id) => setCurrentConversationId(id)}
+        onDeleteConversation={(id) => {
+          deleteConversation(id);
+          refreshConversations();
+          if (currentConversationId === id) {
+            setCurrentConversationId(null);
+            setMessages([]);
+          }
+        }}
       />
 
       {/* Main Content */}
@@ -198,7 +207,7 @@ export default function ChatPage() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Weydii su'aal tafsiirka ku saabsan..."
+              placeholder="Weydii su'aal ku saabsan tafsiirka..."
               rows={1}
               className="w-full bg-transparent px-6 py-4 pr-16 text-base outline-none resize-none max-h-[200px] placeholder:text-muted-foreground/50 scrollbar-hide"
             />
@@ -219,11 +228,34 @@ export default function ChatPage() {
           </div>
           <div className="text-center mt-3">
              <p className="text-[10px] text-muted-foreground/40 font-medium">
-               Tafsiir AI • Waxaa lagu train gareeyay af Soomaali nadiif ah.
+               Tafsiir AI • Waxaa lagu tababaray Af-Soomaali nadiif ah.
              </p>
           </div>
         </div>
       </main>
     </div>
+  );
+}
+
+function ChatPageFallback() {
+  return (
+    <div className="flex h-screen bg-background overflow-hidden relative">
+      <IslamicPattern />
+      <main className="flex-1 flex flex-col items-center justify-center">
+        <div className="flex gap-1">
+          <span className="h-2 w-2 rounded-full bg-primary/60 animate-bounce" style={{ animationDelay: "0ms" }} />
+          <span className="h-2 w-2 rounded-full bg-primary/60 animate-bounce" style={{ animationDelay: "150ms" }} />
+          <span className="h-2 w-2 rounded-full bg-primary/60 animate-bounce" style={{ animationDelay: "300ms" }} />
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default function ChatPage() {
+  return (
+    <Suspense fallback={<ChatPageFallback />}>
+      <ChatPageContent />
+    </Suspense>
   );
 }

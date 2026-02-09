@@ -46,7 +46,7 @@ export function VerseOfTheDay() {
         {data.verse.translation}
       </p>
       <p className="text-xs text-muted-foreground/60 mt-2">
-        Suurat {data.surahName} • Aayah {data.ayah}
+        Suuurad {data.surahName} • Aayad {data.ayah}
       </p>
     </Link>
   );

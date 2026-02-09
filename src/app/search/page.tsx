@@ -42,7 +42,7 @@ export default function SearchPage() {
             Raadi Qur'aanka
           </h1>
           <p className="text-muted-foreground/80 mt-2">
-            Raadi aayadaha ee tarjumaadda ama qoraalka Carabiga
+            Raadi aayadaha adigoo isticmaalaya tarjumaadda ama qoraalka Carabiga
           </p>
         </div>
 
@@ -91,7 +91,7 @@ export default function SearchPage() {
                   {r.verse.translation}
                 </p>
                 <p className="text-xs text-primary mt-2">
-                  Suurat {r.surah} • Aayah {r.ayah}
+                  Suuurad {r.surah} • Aayad {r.ayah}
                 </p>
               </Link>
             ))}

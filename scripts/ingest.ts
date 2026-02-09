@@ -76,8 +76,8 @@ Footnotes: ${v.footnotes}
 
     console.log(`   📝 Parsed ${verses.length} verses from local JSON`);
 
-    // Ingest into Memvid
-    const CHUNK_SIZE = 5;
+    // Ingest into Memvid (larger chunks = fewer API calls; 1s delay = ~10 min total)
+    const CHUNK_SIZE = 10;
     let chunksIngested = 0;
 
     for (let i = 0; i < verses.length; i += CHUNK_SIZE) {
@@ -115,15 +115,14 @@ Footnotes: ${v.footnotes}
           );
         }
 
-        // Rate limit delay (4 seconds for safety)
-        await new Promise((resolve) => setTimeout(resolve, 4000));
+        // Rate limit delay (1s; reduce if you hit Gemini limits)
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       } catch (chunkError) {
         console.error(
           `   ⚠️ Failed chunk for ${title}:`,
           (chunkError as Error).message,
         );
-        // Add longer delay on error
-        await new Promise((resolve) => setTimeout(resolve, 5000));
+        await new Promise((resolve) => setTimeout(resolve, 2000));
       }
     }
 
