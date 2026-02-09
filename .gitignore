@@ -44,7 +44,7 @@ next-env.d.ts
 # memvid databases
 *.mv2
 data/*.mv2
-.tafsiir_memory.mv2.*
+.tafsiir.mv2.*
 
 # logs
 *.log

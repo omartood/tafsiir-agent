@@ -26,7 +26,7 @@ An AI-powered Somali Quran Tafsiir assistant that provides grounded, accurate an
 
 - **`src/app/`**: Application routes and Chat API logic.
 - **`src/components/`**: Reusable UI components (Sidebar, Message bubbles).
-- **`data/`**: Stores source JSON (`quran.json`) and the Memvid database (`tafsiir_memory.mv2`).
+- **`data/`**: Stores source JSON (`quran.json`) and the Memvid database (`tafsiir.mv2`).
 - **`scripts/`**: Development tools for data ingestion and debugging.
 - **`pdf/`**: Original Somali Quran PDF documents.
 
@@ -58,7 +58,7 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 Before the chat works, you must process the data into the Memvid memory:
 
 ```bash
-# Ingest data into tafsiir_memory.mv2
+# Ingest data into tafsiir.mv2
 npx tsx scripts/ingest.ts
 ```
 
@@ -74,14 +74,14 @@ npm run dev
 
 The app exposes a **public REST API** for the Quran JSON (Arabic + Somali translation):
 
-| Endpoint | Description |
-|----------|-------------|
-| `GET /api/quran` | API info and usage |
-| `GET /api/quran/surahs` | List all 114 surahs (metadata) |
-| `GET /api/quran?surah=1` | All verses of surah 1 |
-| `GET /api/quran?surah=1&ayah=2` | Single verse (surah 1, ayah 2) |
-| `GET /api/quran/surahs/1` | Same as above (path style) |
-| `GET /api/quran/surahs/1?ayah=2` | Single verse (path style) |
+| Endpoint                         | Description                    |
+| -------------------------------- | ------------------------------ |
+| `GET /api/quran`                 | API info and usage             |
+| `GET /api/quran/surahs`          | List all 114 surahs (metadata) |
+| `GET /api/quran?surah=1`         | All verses of surah 1          |
+| `GET /api/quran?surah=1&ayah=2`  | Single verse (surah 1, ayah 2) |
+| `GET /api/quran/surahs/1`        | Same as above (path style)     |
+| `GET /api/quran/surahs/1?ayah=2` | Single verse (path style)      |
 
 No authentication required. Full documentation: **[API Docs](/docs)** (or open `/docs` in the running app).
 
