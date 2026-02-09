@@ -45,7 +45,7 @@ export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
         </div>
 
         <div className="space-y-4 max-w-lg mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-500 to-primary bg-300% animate-shimmer">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gradient-shimmer">
             Tafsiir AI
           </h1>
           <p className="text-lg text-muted-foreground/80 leading-relaxed font-light">

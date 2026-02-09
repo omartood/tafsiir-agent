@@ -352,6 +352,23 @@
   background-clip: text;
 }
 
+.text-gradient-shimmer {
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--emerald-light) 25%,
+    var(--primary) 50%,
+    var(--emerald-light) 75%,
+    var(--primary) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
