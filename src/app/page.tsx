@@ -1,6 +1,7 @@
 "use client";
 
 import { BookOpen, Star, BookMarked, Sparkles } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { IslamicPattern } from "@/components/islamic-decorations";
@@ -41,11 +42,7 @@ export default function Home() {
       <header className="relative z-10 flex items-center justify-between border-b border-border/50 px-4 py-3 sm:px-6 sm:py-4 glass">
         <div className="flex items-center gap-3">
           {/* Logo */}
-          <div className="relative flex h-11 w-11 items-center justify-center">
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-emerald-600 opacity-90" />
-            <div className="absolute inset-0 rounded-xl golden-glow" />
-            <BookOpen size={22} className="relative z-10 text-white" />
-          </div>
+          <Image src="/logo.svg" alt="Tafsiir AI" width={44} height={44} className="rounded-xl shadow-lg" />
           
           {/* Title */}
           <div>

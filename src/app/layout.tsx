@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   description: "Discover the wisdom of the Quran in Somali. Ask questions about Quranic verses, Tafsir, and Islamic knowledge with our AI-powered assistant.",
   keywords: ["Quran", "Tafsiir", "Somali", "Islamic", "AI", "Tafsir", "Qur'aan"],
   authors: [{ name: "Tafsiir AI" }],
+  icons: {
+    icon: "/logo.svg",
+    apple: "/logo.svg",
+  },
   openGraph: {
     title: "Tafsiir Qur'aan AI",
     description: "Your Somali Quran AI Assistant",

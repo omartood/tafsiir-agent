@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="50%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="50%" stop-color="#F4C430"/>
+      <stop offset="100%" stop-color="#E8B828"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect x="32" y="32" width="448" height="448" rx="96" fill="url(#emerald)"/>
+
+  <!-- Subtle geometric Islamic pattern overlay -->
+  <g opacity="0.08" stroke="#fff" stroke-width="1" fill="none">
+    <polygon points="256,80 290,160 376,160 306,212 330,296 256,248 182,296 206,212 136,160 222,160"/>
+    <polygon points="256,80 290,160 376,160 306,212 330,296 256,248 182,296 206,212 136,160 222,160" transform="rotate(45 256 256)"/>
+    <circle cx="256" cy="256" r="120"/>
+    <circle cx="256" cy="256" r="160"/>
+  </g>
+
+  <!-- Open book shape (wider & taller) -->
+  <g filter="url(#glow)">
+    <!-- Left page -->
+    <path d="M256 155 C256 155 235 135 190 126 C145 118 100 125 100 125 L100 355 C100 355 145 347 190 356 C235 365 256 388 256 388 Z" fill="white" opacity="0.95"/>
+    <!-- Right page -->
+    <path d="M256 155 C256 155 277 135 322 126 C367 118 412 125 412 125 L412 355 C412 355 367 347 322 356 C277 365 256 388 256 388 Z" fill="white" opacity="0.9"/>
+    <!-- Spine line -->
+    <line x1="256" y1="150" x2="256" y2="388" stroke="url(#emerald)" stroke-width="2" opacity="0.3"/>
+  </g>
+
+  <!-- Gold sparkle above the book -->
+  <g transform="translate(256, 108)" filter="url(#glow)">
+    <path d="M0,-22 C3,-8 8,-3 22,0 C8,3 3,8 0,22 C-3,8 -8,3 -22,0 C-8,-3 -3,-8 0,-22Z" fill="url(#gold)"/>
+    <circle cx="17" cy="-17" r="2.5" fill="url(#gold)" opacity="0.8"/>
+    <circle cx="-14" cy="-20" r="1.8" fill="url(#gold)" opacity="0.6"/>
+    <circle cx="22" cy="8" r="2" fill="url(#gold)" opacity="0.7"/>
+  </g>
+
+  <!-- === Text on the book (all centred at x=256) === -->
+
+  <!-- Bismillah -->
+  <text x="256" y="210" text-anchor="middle" dominant-baseline="central" font-family="'Amiri', 'Traditional Arabic', serif" font-weight="700" font-size="22" fill="url(#gold)" direction="rtl" xml:lang="ar">
+    بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+  </text>
+
+  <!-- Gold separator -->
+  <line x1="160" y1="228" x2="352" y2="228" stroke="url(#gold)" stroke-width="0.7" opacity="0.35"/>
+
+  <!-- تَفْسِير -->
+  <text x="256" y="275" text-anchor="middle" dominant-baseline="central" font-family="'Amiri', 'Traditional Arabic', serif" font-weight="700" font-size="40" fill="#047857" direction="rtl" xml:lang="ar" opacity="0.9">
+    تَفْسِير
+  </text>
+
+  <!-- ذَكَاءٌ اصْطِنَاعِيّ -->
+  <text x="256" y="318" text-anchor="middle" dominant-baseline="central" font-family="'Amiri', 'Traditional Arabic', serif" font-weight="400" font-size="18" fill="url(#gold)" direction="rtl" xml:lang="ar" opacity="0.7">
+    ذَكَاءٌ اصْطِنَاعِيّ
+  </text>
+
+  <!-- Small decorative dots -->
+  <circle cx="220" cy="340" r="2" fill="url(#gold)" opacity="0.25"/>
+  <circle cx="256" cy="340" r="2.5" fill="url(#gold)" opacity="0.35"/>
+  <circle cx="292" cy="340" r="2" fill="url(#gold)" opacity="0.25"/>
+
+  <!-- === Bottom text below the book === -->
+
+  <!-- Tafsiir AI in English, centred -->
+  <text x="220" y="438" text-anchor="middle" dominant-baseline="central" font-family="'Outfit', 'Segoe UI', sans-serif" font-weight="700" font-size="48" fill="white" letter-spacing="2" opacity="0.95">
+    Tafsiir
+  </text>
+  <text x="330" y="438" text-anchor="middle" dominant-baseline="central" font-family="'Outfit', 'Segoe UI', sans-serif" font-weight="700" font-size="48" fill="url(#gold)" letter-spacing="2" opacity="0.95">
+    AI
+  </text>
+</svg>

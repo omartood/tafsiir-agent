@@ -63,7 +63,7 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
         </div>
 
         {/* CTA Actions */}
-        <div className="flex flex-col items-center justify-center gap-4 pt-8 sm:flex-row animate-fade-up opacity-0" style={{ animationDelay: "500ms" }}>
+        <div className="flex flex-col items-center justify-center gap-2 pt-8 sm:flex-row sm:items-baseline sm:gap-3 animate-fade-up opacity-0" style={{ animationDelay: "500ms" }}>
           <Button 
             onClick={onStartChat}
             size="lg" 
@@ -76,8 +76,7 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
             {/* Shimmer Effect */}
             <div className="absolute inset-0 hidden group-hover:block animate-shimmer" />
           </Button>
-          
-          <p className="max-w-xs text-xs text-muted-foreground/60">
+          <p className="max-w-xs text-xs text-muted-foreground/60 sm:shrink-0">
             Powered by Gemini Pro • Authentic Sources
           </p>
         </div>

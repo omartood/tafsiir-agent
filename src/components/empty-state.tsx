@@ -1,8 +1,9 @@
 "use client";
 
-import { Sparkles, ArrowRight, BookOpen, List, Search } from "lucide-react";
+import { ArrowRight, BookOpen, List, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { IslamicPattern, StarPattern } from "@/components/islamic-decorations";
+import { StarPattern } from "@/components/islamic-decorations";
+import Image from "next/image";
 
 interface EmptyStateProps {
   onSuggestionClick: (suggestion: string) => void;
@@ -39,9 +40,7 @@ export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
         
         <div className="relative inline-flex mb-4 group">
            <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/30 transition-all duration-500" />
-           <div className="relative h-20 w-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center shadow-2xl backdrop-blur-sm">
-             <Sparkles className="h-10 w-10 text-primary animate-pulse-glow" />
-           </div>
+           <Image src="/logo.svg" alt="Tafsiir AI" width={80} height={80} className="relative z-10 rounded-2xl shadow-2xl" />
         </div>
 
         <div className="space-y-4 max-w-lg mx-auto">
