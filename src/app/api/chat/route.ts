@@ -3,6 +3,26 @@ import { open, getEmbedder } from "@memvid/sdk";
 import path from "path";
 import fs from "fs";
 
+// On Vercel/serverless the filesystem is read-only; Memvid needs to write (indexes/locks).
+// Copy the memory file to /tmp once per instance so open() succeeds.
+const TMP_MEMORY_PATH = path.join("/tmp", "tafsiir.mv2");
+let tmpMemoryReady = false;
+
+function getMemoryPath(): string {
+  const source = path.join(process.cwd(), "data", "tafsiir.mv2");
+  if (!fs.existsSync(source)) return source;
+  if (!tmpMemoryReady) {
+    try {
+      fs.copyFileSync(source, TMP_MEMORY_PATH);
+      tmpMemoryReady = true;
+    } catch (e) {
+      console.warn("LOG: Copy to /tmp failed, using source path", e);
+      return source;
+    }
+  }
+  return TMP_MEMORY_PATH;
+}
+
 // Refusal template (Somali)
 const REFUSAL_MSG =
   "Ma helin tafsiir cad oo ku saabsan su’aashan. Sidaas darteed kama jawaabi karo anigoo aan hubin.";
@@ -37,9 +57,9 @@ export async function POST(req: NextRequest) {
 
     // 1. Setup Memvid & Embedder (memory must be built with Gemini: bun run ingest)
     console.log("LOG: Initializing retrieval...");
-    const memoryFile = path.join(process.cwd(), "data", "tafsiir.mv2");
+    const sourceFile = path.join(process.cwd(), "data", "tafsiir.mv2");
 
-    if (!fs.existsSync(memoryFile)) {
+    if (!fs.existsSync(sourceFile)) {
       console.warn(
         "LOG: Memory file not found, creating empty fallback context",
       );
@@ -48,13 +68,15 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    const memoryPath = getMemoryPath();
+
     const embedder = getEmbedder("gemini", {
       apiKey,
       model: "gemini-embedding-001",
     });
     const memvidKey = process.env.MEMVID_API_KEY?.trim();
     const mv = await open(
-      memoryFile,
+      memoryPath,
       "basic",
       memvidKey?.startsWith("mv2_") ? { memvidApiKey: memvidKey } : undefined
     );
