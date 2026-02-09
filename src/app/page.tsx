@@ -1,9 +1,8 @@
 "use client";
 
 import { BookOpen, Star, BookMarked, Sparkles } from "lucide-react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Navbar } from "@/components/navbar";
 import { IslamicPattern } from "@/components/islamic-decorations";
 import { LandingHero } from "@/components/landing-hero";
 import { useRouter } from "next/navigation";
@@ -11,18 +10,18 @@ import { useRouter } from "next/navigation";
 const sampleQuestions = [
   {
     icon: BookOpen,
-    title: "Suuradda Al-Faatixa",
-    question: "Maxay ka dhigan tahay Suuradda Al-Faatixa?",
+    title: "Suurat Al-Faatixa",
+    question: "Tafsiirka Suuradda Al-Faatixa ee af Soomaaliga",
   },
   {
     icon: Star,
-    title: "Aayatul Kursi",
-    question: "Maxay tahay muhiimadda Aayatul Kursi?",
+    title: "Suurat Al-Baqarah",
+    question: "Maxay ka dhigan tahay Aayat Al-Kursi?",
   },
   {
     icon: BookMarked,
-    title: "Tafsiirka Surah",
-    question: "Faahfaahi Suurat Yasiin",
+    title: "Suurat Yasiin",
+    question: "Tarjum iyo tafsiir Suurat Yasiin",
   },
 ];
 
@@ -38,28 +37,8 @@ export default function Home() {
       {/* Background Pattern */}
       <IslamicPattern />
       
-      {/* Header */}
-      <header className="relative z-10 flex items-center justify-between border-b border-border/50 px-4 py-3 sm:px-6 sm:py-4 glass">
-        <div className="flex items-center gap-3">
-          {/* Logo */}
-          <Image src="/logo.svg" alt="Tafsiir AI" width={44} height={44} className="rounded-xl shadow-lg" />
-          
-          {/* Title */}
-          <div>
-            <h1 className="text-xl font-bold tracking-tight text-gradient sm:text-2xl">
-              Tafsiir AI
-            </h1>
-            <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
-              Qur'aan Assistant
-            </p>
-          </div>
-        </div>
-
-        {/* Theme Toggle */}
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-        </div>
-      </header>
+      {/* Navbar */}
+      <Navbar />
 
       {/* Hero Section */}
       <div className="relative z-10 flex-1 overflow-y-auto scrollbar-hide">
@@ -99,7 +78,7 @@ export default function Home() {
             <footer className="w-full text-center pb-6 opacity-60">
                 <p className="text-xs text-muted-foreground flex items-center justify-center gap-2">
                     <Sparkles size={10} /> 
-                    Designed for Ummah with AI 
+                    Tafsiirka iyo Tarjumaadda Qur'aanka 
                     <Sparkles size={10} />
                 </p>
             </footer>

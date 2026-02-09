@@ -70,6 +70,23 @@ npm run dev
 
 ---
 
+## 📡 Public Quran API
+
+The app exposes a **public REST API** for the Quran JSON (Arabic + Somali translation):
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/quran` | API info and usage |
+| `GET /api/quran/surahs` | List all 114 surahs (metadata) |
+| `GET /api/quran?surah=1` | All verses of surah 1 |
+| `GET /api/quran?surah=1&ayah=2` | Single verse (surah 1, ayah 2) |
+| `GET /api/quran/surahs/1` | Same as above (path style) |
+| `GET /api/quran/surahs/1?ayah=2` | Single verse (path style) |
+
+No authentication required. Full documentation: **[API Docs](/docs)** (or open `/docs` in the running app).
+
+---
+
 ## 📖 Related Documents
 
 - [Walkthrough](.gemini/antigravity/brain/a1a13f43-125b-4c30-b80c-a2c8304b1498/walkthrough.md): Technical details of the retrieval logic and fixes.

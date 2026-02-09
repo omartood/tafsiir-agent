@@ -10,8 +10,8 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Tafsiir Qur'aan AI | Somali Quran Assistant",
-  description: "Discover the wisdom of the Quran in Somali. Ask questions about Quranic verses, Tafsir, and Islamic knowledge with our AI-powered assistant.",
-  keywords: ["Quran", "Tafsiir", "Somali", "Islamic", "AI", "Tafsir", "Qur'aan"],
+  description: "Tafsiirka iyo tarjumaadda Qur'aanka Kariimka ah af Soomaaliga. Weydii su'aalo ku saabsan aayadaha, suuradaha, iyo macnahooda.",
+  keywords: ["Quran", "Tafsiir", "Somali", "AI", "Tafsir", "Qur'aan", "Tarjumaad", "Aayadaha"],
   authors: [{ name: "Tafsiir AI" }],
   icons: {
     icon: "/logo.svg",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Tafsiir Qur'aan AI",
-    description: "Your Somali Quran AI Assistant",
+    description: "Tafsiirka iyo Tarjumaadda Qur'aanka af Soomaaliga",
     type: "website",
   },
 };

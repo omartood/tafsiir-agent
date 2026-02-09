@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, MessageSquare, Settings, ChevronLeft, ChevronRight, BookOpen, Heart, User } from "lucide-react";
+import { Plus, MessageSquare, Settings, ChevronLeft, ChevronRight, Heart, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { IslamicPattern } from "@/components/islamic-decorations";
 import Link from "next/link";
+import Image from "next/image";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -16,9 +17,9 @@ interface SidebarProps {
 export function Sidebar({ isOpen, setIsOpen, className }: SidebarProps) {
   // Mock data for recent chats
   const recentChats = [
-    { id: 1, title: "Tafsiirka Surah Al-Fatiha", date: "Today" },
-    { id: 2, title: "Meaning of Ayatul Kursi", date: "Yesterday" },
-    { id: 3, title: "Stories of Prophets", date: "Feb 5" },
+    { id: 1, title: "Tafsiirka Suurat Al-Faatixa", date: "Maanta" },
+    { id: 2, title: "Macnaha Aayat Al-Kursi", date: "Shalay" },
+    { id: 3, title: "Tarjumaadda Suurat Yasiin", date: "Feb 5" },
   ];
 
   return (
@@ -45,9 +46,7 @@ export function Sidebar({ isOpen, setIsOpen, className }: SidebarProps) {
         {/* Header */}
         <div className="relative z-10 flex items-center justify-between p-4 border-b border-border/40">
            <Link href="/" className="flex items-center gap-2 group">
-              <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
-                 <BookOpen size={18} />
-              </div>
+              <Image src="/logo.svg" alt="Tafsiir AI" width={32} height={32} className="rounded-lg shadow-sm" />
               <span className="font-bold text-lg tracking-tight">Tafsiir AI</span>
            </Link>
            <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsOpen(false)}>

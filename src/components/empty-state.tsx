@@ -13,20 +13,20 @@ export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
   const suggestions = [
     {
       icon: Search,
-      text: "Tafsiirka Surah Al-Fatiha",
+      text: "Tafsiirka Suurat Al-Faatixa",
       label: "Raadi Tafsiir",
       color: "text-blue-500 bg-blue-500/10",
     },
     {
       icon: BookOpen,
-      text: "Maxaa loola jeedaa 'Taqwa'?",
-      label: "Fahamka Erayada",
+      text: "Tarjum Suurat Al-Mulk af Soomaaliga",
+      label: "Tarjumaad",
       color: "text-emerald-500 bg-emerald-500/10",
     },
     {
       icon: List,
-      text: "Isbarbardhig Maka iyo Madiina",
-      label: "Taariikhda",
+      text: "Maxay ka dhigan tahay Aayat Al-Kursi?",
+      label: "Macnaha Aayadaha",
       color: "text-amber-500 bg-amber-500/10",
     },
   ];
@@ -48,8 +48,8 @@ export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
             Tafsiir AI
           </h1>
           <p className="text-lg text-muted-foreground/80 leading-relaxed font-light">
-            Assistant-kaaga gaarka ah ee barashada Qur'aanka iyo Tafsiirka. 
-            Waydii wax kasta oo ku saabsan diinta.
+            Assistant-kaaga gaarka ah ee tafsiirka iyo tarjumaadda Qur'aanka. 
+            Weydii wax kasta oo ku saabsan aayadaha Qur'aanka.
           </p>
         </div>
       </div>

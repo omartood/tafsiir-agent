@@ -39,17 +39,17 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
           </div>
           
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground/80 sm:text-xl leading-relaxed">
-            Discover the profound meanings of the Holy Quran through AI-powered Tafsir. 
-            Ask questions, explore verses, and deepen your understanding in Somali.
+            Ogaaw macnaha qoto-dheer ee Qur'aanka Kariimka ah. 
+            Weydii su'aalo ku saabsan aayadaha, tafsiirka, iyo tarjumaadda af Soomaaliga.
           </p>
 
           {/* Feature Pills */}
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             {[
               "Tafsiirka Aayadaha", 
-              "Asbaabta Nuzoolka", 
-              "Siirada Nabiga (NNKH)", 
-              "Fatwo & Fiqhi"
+              "Tarjumaadda Qur'aanka", 
+              "Macnaha Suuradaha", 
+              "Asbaab al-Nuzuul"
             ].map((tag, i) => (
               <span 
                 key={i}
@@ -77,7 +77,7 @@ export function LandingHero({ onStartChat }: LandingHeroProps) {
             <div className="absolute inset-0 hidden group-hover:block animate-shimmer" />
           </Button>
           <p className="max-w-xs text-xs text-muted-foreground/60 sm:shrink-0">
-            Powered by Gemini Pro • Authentic Sources
+            Powered by Memvid • Authentic Sources
           </p>
         </div>
       </div>
