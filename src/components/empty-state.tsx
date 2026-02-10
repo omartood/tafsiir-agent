@@ -5,6 +5,7 @@ import { ArrowRight, BookOpen, List, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { StarPattern } from "@/components/islamic-decorations";
 import { VerseOfTheDay } from "@/components/verse-of-the-day";
+import { QuranInsights } from "@/components/quran-insights";
 import Image from "next/image";
 
 interface EmptyStateProps {
@@ -85,6 +86,10 @@ export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
             </div>
           </button>
         ))}
+      </div>
+
+      <div className="w-full mt-12 py-12 border-t border-border/20">
+        <QuranInsights />
       </div>
     </div>
   );

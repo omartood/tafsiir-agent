@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
 import { IslamicPattern } from "@/components/islamic-decorations";
 import { LandingHero } from "@/components/landing-hero";
+import { QuranInsights } from "@/components/quran-insights";
+import { DailyReminder } from "@/components/daily-reminder";
 import { useRouter } from "next/navigation";
 
 const howItWorks = [
@@ -145,6 +147,10 @@ export default function Home() {
                   </button>
                 ))}
             </div>
+
+            <div className="w-full max-w-4xl mx-auto py-12 animate-fade-up opacity-0" style={{ animationDelay: "750ms" }}>
+                <QuranInsights />
+            </div>
             
             <footer className="w-full text-center pb-8 space-y-4">
                 <p className="text-xs text-muted-foreground/80">
@@ -176,6 +182,9 @@ export default function Home() {
             </footer>
         </div>
       </div>
+
+      {/* Daily Reminder */}
+      <DailyReminder />
     </main>
   );
 }

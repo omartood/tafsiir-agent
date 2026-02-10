@@ -8,6 +8,8 @@ import { IslamicPattern } from "@/components/islamic-decorations";
 import Link from "next/link";
 import Image from "next/image";
 import { getBookmarks, type Bookmark } from "@/lib/bookmarks";
+import { ThemeSwitcher } from "./theme-switcher";
+
 
 interface SidebarProps {
   isOpen: boolean;
@@ -237,6 +239,8 @@ export function Sidebar({ isOpen, setIsOpen, className, conversations = [], curr
                   <Settings size={16} className="text-muted-foreground/70 group-hover:text-primary transition-colors" />
                   <span>Dookhyada</span>
                 </Link>
+
+                <ThemeSwitcher />
 
                 <div className="mt-4 flex items-center gap-3 px-3 pt-4 border-t border-border/30">
                   <div className="h-8 w-8 rounded-full bg-secondary/20 flex items-center justify-center text-secondary-foreground shrink-0">

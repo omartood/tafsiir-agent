@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import { VersePlayer } from "./verse-player";
+import { VerseCardGenerator } from "./verse-card-generator";
+
 
 const ARABIC_REGEX = /[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]/;
 function getTextFromChildren(children: React.ReactNode): string {
@@ -103,12 +106,30 @@ export function ChatMessage({ message }: ChatMessageProps) {
                     const isArabic = ARABIC_REGEX.test(textContent);
                     
                     if (isArabic) {
+                      // Try to find a verse reference in the near context if possible
+                      const verseMatch = textContent.match(/(\d{1,3}):(\d{1,3})/);
+                      
                       return (
-                        <div 
-                          className="my-6 p-6 rounded-2xl bg-primary/5 border border-primary/10 text-center font-arabic text-3xl leading-[2.2] text-foreground/90 shadow-inner"
-                          dir="rtl"
-                        >
-                          {children}
+                        <div className="my-6 space-y-3">
+                          <div 
+                            className="p-6 rounded-2xl bg-primary/5 border border-primary/10 text-center font-arabic text-3xl leading-[2.2] text-foreground/90 shadow-inner"
+                            dir="rtl"
+                          >
+                            {children}
+                          </div>
+                          {verseMatch && (
+                            <div className="flex justify-center gap-2">
+                              <VersePlayer 
+                                surah={parseInt(verseMatch[1])} 
+                                ayah={parseInt(verseMatch[2])} 
+                              />
+                              <VerseCardGenerator 
+                                arabic={textContent}
+                                somali="" 
+                                reference={`${verseMatch[1]}:${verseMatch[2]}`}
+                              />
+                            </div>
+                          )}
                         </div>
                       );
                     }

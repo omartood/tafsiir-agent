@@ -138,6 +138,76 @@
   --emerald-light: hsl(160 65% 50%);
 }
 
+/* ===== OTTOMAN THEME ===== */
+.theme-ottoman {
+  --background: hsl(0 15% 95%); /* Soft Parchment */
+  --foreground: hsl(0 40% 15%); /* Deep Maroon */
+  --primary: hsl(0 75% 35%); /* Ottoman Red */
+  --primary-foreground: hsl(45 50% 95%);
+  --secondary: hsl(45 60% 50%); /* Tughra Gold */
+  --accent: hsl(200 60% 30%); /* Iznik Blue */
+  --card: hsl(45 30% 98%);
+  --border: hsl(0 20% 85%);
+  --ring: hsl(0 75% 35%);
+}
+.theme-ottoman.dark {
+  --background: hsl(0 20% 8%);
+  --foreground: hsl(45 30% 90%);
+  --primary: hsl(0 70% 45%);
+  --card: hsl(0 15% 12%);
+  --border: hsl(0 15% 20%);
+}
+.theme-ottoman .pattern-islamic {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l20 20-20 20L0 20z' stroke='%23800000' stroke-opacity='0.05' fill='none'/%3E%3C/svg%3E");
+}
+
+/* ===== ANDALUSIAN THEME ===== */
+.theme-andalusian {
+  --background: hsl(210 30% 98%); /* Cool white */
+  --foreground: hsl(210 50% 15%); /* Deep Indigo */
+  --primary: hsl(210 80% 40%); /* Spanish Azure */
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(35 80% 60%); /* Terracotta Gold */
+  --accent: hsl(150 40% 30%); /* Courtyard Green */
+  --card: hsl(210 20% 99%);
+  --border: hsl(210 20% 90%);
+  --ring: hsl(210 80% 40%);
+}
+.theme-andalusian.dark {
+  --background: hsl(210 40% 8%);
+  --foreground: hsl(210 20% 95%);
+  --primary: hsl(210 70% 55%);
+  --card: hsl(210 30% 12%);
+  --border: hsl(210 25% 20%);
+}
+.theme-andalusian .pattern-islamic {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='20' stroke='%230047AB' stroke-opacity='0.05' fill='none'/%3E%3C/svg%3E");
+}
+
+/* ===== MOGADISHU THEME ===== */
+.theme-mogadishu {
+  --background: hsl(180 20% 98%); /* Sea Salt */
+  --foreground: hsl(210 60% 10%); /* Ocean Navy */
+  --primary: hsl(190 90% 35%); /* Somali Blue */
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(40 80% 70%); /* White Sand */
+  --accent: hsl(45 90% 50%); /* Sunlit Gold */
+  --card: hsl(190 30% 99%);
+  --border: hsl(190 20% 92%);
+  --ring: hsl(190 90% 35%);
+}
+.theme-mogadishu.dark {
+  --background: hsl(200 40% 6%);
+  --foreground: hsl(190 30% 95%);
+  --primary: hsl(190 80% 50%);
+  --card: hsl(200 35% 10%);
+  --border: hsl(200 30% 18%);
+}
+.theme-mogadishu .pattern-islamic {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l40 40L0 80M80 0l-40 40 40 40' stroke='%234169E1' stroke-opacity='0.05' fill='none'/%3E%3C/svg%3E");
+}
+
+
 @layer base {
   * {
     @apply border-border;
