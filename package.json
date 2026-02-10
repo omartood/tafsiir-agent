@@ -13,7 +13,6 @@
     "@google/generative-ai": "^0.24.1",
     "@memvid/sdk": "^2.0.155",
     "@radix-ui/react-slot": "^1.2.4",
-    "@tailwindcss/typography": "^0.5.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.3",
@@ -31,6 +30,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20",
     "@types/pdf-parse": "^1.1.5",
     "@types/react": "^19",
