@@ -24,6 +24,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { AuthProvider } from "@/components/auth-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,8 +52,11 @@ export default function RootLayout({
           "h-full bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary font-sans"
         )}
       >
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
 }
+

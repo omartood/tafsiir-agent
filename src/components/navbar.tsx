@@ -5,8 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { BookOpen, MessageSquare, Info, Menu, X, FileCode, Search } from "lucide-react";
+import { AuthModal } from "@/components/auth/auth-modal";
+import { BookOpen, MessageSquare, Info, Menu, X, FileCode, Search, LogIn, UserPlus, LogOut, User } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/components/auth-provider";
+import { createClient } from "@/utils/supabase/client";
 
 const navLinks = [
   { href: "/", label: "Bogga Hore", icon: null },
@@ -19,7 +22,16 @@ const navLinks = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const { session, isPending, user } = useAuth();
+  const supabase = createClient();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authView, setAuthView] = useState<"login" | "register">("login");
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    window.location.href = "/";
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/50 glass">
@@ -72,6 +84,62 @@ export function Navbar() {
 
         {/* Right side */}
         <div className="flex items-center gap-2">
+          {/* Auth Section - Desktop */}
+          {!isPending && (
+            <div className="hidden md:flex items-center gap-2">
+              {session ? (
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-muted/50 border border-border">
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                      <User size={14} />
+                    </div>
+                    <span className="text-sm font-medium text-foreground max-w-[120px] truncate">
+                      {user?.user_metadata?.full_name || user?.email}
+                    </span>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className={cn(
+                      "p-2 rounded-lg text-muted-foreground hover:text-red-500 hover:bg-red-500/10 transition-all"
+                    )}
+                    title="Ka bax"
+                  >
+                    <LogOut size={18} />
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <button
+                    onClick={() => {
+                      setAuthView("login");
+                      setAuthModalOpen(true);
+                    }}
+                    className={cn(
+                      "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium",
+                      "text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all"
+                    )}
+                  >
+                    <LogIn size={16} />
+                    Soo Gal
+                  </button>
+                  <button
+                    onClick={() => {
+                      setAuthView("register");
+                      setAuthModalOpen(true);
+                    }}
+                    className={cn(
+                      "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium",
+                      "bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
+                    )}
+                  >
+                    <UserPlus size={16} />
+                    Isdiiwaangeli
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+          
           <ThemeToggle />
           {/* Mobile hamburger */}
           <button
@@ -110,9 +178,80 @@ export function Navbar() {
                 </Link>
               );
             })}
+            
+            {/* Auth Section - Mobile */}
+            {!isPending && (
+              <div className="flex flex-col gap-2 pt-3 mt-3 border-t border-border/40">
+                {session ? (
+                  <>
+                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-muted/30">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                        <User size={18} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-bold text-foreground truncate">
+                          {user?.user_metadata?.full_name || user?.email}
+                        </p>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {user?.email}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={handleLogout}
+                      className={cn(
+                        "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium",
+                        "text-red-500 hover:bg-red-500/10 transition-all"
+                      )}
+                    >
+                      <LogOut size={18} />
+                      Ka bax
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => {
+                        setAuthView("login");
+                        setAuthModalOpen(true);
+                        setMobileOpen(false);
+                      }}
+                      className={cn(
+                        "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium",
+                        "text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all"
+                      )}
+                    >
+                      <LogIn size={18} />
+                      Soo Gal
+                    </button>
+                    <button
+                      onClick={() => {
+                        setAuthView("register");
+                        setAuthModalOpen(true);
+                        setMobileOpen(false);
+                      }}
+                      className={cn(
+                        "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium",
+                        "bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
+                      )}
+                    >
+                      <UserPlus size={18} />
+                      Isdiiwaangeli
+                    </button>
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </nav>
       )}
+      
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={authModalOpen} 
+        onClose={() => setAuthModalOpen(false)}
+        defaultView={authView}
+      />
     </header>
   );
 }

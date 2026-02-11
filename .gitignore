@@ -52,3 +52,5 @@ debug_error.log
 
 # data/pdfs
 /pdf/*.pdf
+
+/src/generated/prisma
