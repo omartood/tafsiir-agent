@@ -22,7 +22,7 @@ const navLinks = [
 
 export function Navbar() {
   const pathname = usePathname();
-  const { session, isPending, user } = useAuth();
+  const { session, isPending, user, profile } = useAuth();
   const supabase = createClient();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -89,14 +89,36 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-2">
               {session ? (
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-muted/50 border border-border">
-                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                      <User size={14} />
+                  {/* Streak display */}
+                  {profile && profile.streak_count > 0 && (
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-600 dark:text-orange-400 text-xs font-bold animate-pulse-slow">
+                      <span className="text-sm">🔥</span>
+                      <span>{profile.streak_count}</span>
                     </div>
-                    <span className="text-sm font-medium text-foreground max-w-[120px] truncate">
-                      {user?.user_metadata?.full_name || user?.email}
+                  )}
+
+                  <Link 
+                    href="/profile"
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-muted/50 border border-border hover:bg-muted transition-colors group"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary overflow-hidden border border-primary/20">
+                      {profile?.avatar_url ? (
+                        <Image 
+                          src={profile.avatar_url} 
+                          alt="Avatar" 
+                          width={24} 
+                          height={24} 
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <User size={14} />
+                      )}
+                    </div>
+                    <span className="text-sm font-medium text-foreground max-w-[120px] truncate group-hover:text-primary transition-colors">
+                      {profile?.full_name || user?.user_metadata?.full_name || user?.email}
                     </span>
-                  </div>
+                  </Link>
+
                   <button
                     onClick={handleLogout}
                     className={cn(
@@ -184,19 +206,38 @@ export function Navbar() {
               <div className="flex flex-col gap-2 pt-3 mt-3 border-t border-border/40">
                 {session ? (
                   <>
-                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-muted/30">
-                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                        <User size={18} />
+                    <Link
+                      href="/profile"
+                      onClick={() => setMobileOpen(false)}
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl bg-muted/30 border border-border/50 hover:bg-muted/50 transition-colors"
+                    >
+                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary overflow-hidden border border-primary/10">
+                        {profile?.avatar_url ? (
+                          <Image 
+                            src={profile.avatar_url} 
+                            alt="Avatar" 
+                            width={40} 
+                            height={40} 
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <User size={20} />
+                        )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-foreground truncate">
-                          {user?.user_metadata?.full_name || user?.email}
-                        </p>
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-bold text-foreground truncate">
+                            {profile?.full_name || user?.user_metadata?.full_name || user?.email}
+                          </p>
+                          {profile && profile.streak_count > 0 && (
+                            <span className="text-xs">🔥 {profile.streak_count}</span>
+                          )}
+                        </div>
                         <p className="text-xs text-muted-foreground truncate">
                           {user?.email}
                         </p>
                       </div>
-                    </div>
+                    </Link>
                     <button
                       onClick={handleLogout}
                       className={cn(
